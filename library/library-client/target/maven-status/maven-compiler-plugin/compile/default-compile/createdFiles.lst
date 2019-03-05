@@ -1,8 +1,11 @@
 com\racic\lib\client\IsValidUserResponse.class
 com\racic\lib\client\GetNotReturnedBorrowing.class
 com\racic\lib\client\FindByUsernameAndPassword.class
+com\racic\lib\client\IsValidWorkByTitleResponse.class
+com\racic\lib\client\UpdateMember.class
 com\racic\lib\client\ExtendBorrowingResponse.class
 com\racic\lib\client\GetAllResponse.class
+com\racic\lib\client\UpdateMemberResponse.class
 com\racic\lib\client\Book.class
 com\racic\lib\client\BorrowBook.class
 com\racic\lib\client\Library.class
@@ -16,6 +19,7 @@ com\racic\lib\client\FindBookbyId.class
 com\racic\lib\client\ObjectFactory.class
 com\racic\lib\client\Work.class
 com\racic\lib\client\FindAll.class
+com\racic\lib\client\FindWorksByTitleContain.class
 com\racic\lib\client\BookWeb.class
 com\racic\lib\client\FindByUsernameAndPasswordResponse.class
 com\racic\lib\client\GetNotReturnedBorrowingResponse.class
@@ -27,6 +31,7 @@ com\racic\lib\client\LaunchSendEmail.class
 com\racic\lib\client\VerifyBoksListAvailableSizeResponse.class
 com\racic\lib\client\InitResponse.class
 com\racic\lib\client\Init.class
+com\racic\lib\client\IsValidWorkByTitle.class
 com\racic\lib\client\IsValidWorkByAuthorResponse.class
 com\racic\lib\client\FindBookbyIdResponse.class
 com\racic\lib\client\Member.class
@@ -41,6 +46,7 @@ com\racic\lib\client\MemberWeb.class
 com\racic\lib\client\FindByBorrowingIdResponse.class
 com\racic\lib\client\BorrowingWeb.class
 com\racic\lib\client\FindByMember.class
+com\racic\lib\client\FindWorksByTitleContainResponse.class
 com\racic\lib\client\GetAll.class
 com\racic\lib\client\BorrowBookResponse.class
 com\racic\lib\client\FindAllResponse.class

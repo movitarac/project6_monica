@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for verifyBoksListAvailableSize complex type.
+ * <p>Classe Java pour verifyBoksListAvailableSize complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="verifyBoksListAvailableSize">
@@ -34,7 +34,7 @@ public class VerifyBoksListAvailableSize {
     protected Integer arg0;
 
     /**
-     * Gets the value of the arg0 property.
+     * Obtient la valeur de la propriété arg0.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class VerifyBoksListAvailableSize {
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Définit la valeur de la propriété arg0.
      * 
      * @param value
      *     allowed object is

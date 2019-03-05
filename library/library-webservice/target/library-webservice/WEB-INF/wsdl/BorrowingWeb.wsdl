@@ -30,23 +30,17 @@
   <message name="getNotReturnedBorrowingResponse">
     <part name="parameters" element="tns:getNotReturnedBorrowingResponse"/>
   </message>
-  <message name="launchSendEmail">
-    <part name="parameters" element="tns:launchSendEmail"/>
+  <message name="findByMember">
+    <part name="parameters" element="tns:findByMember"/>
   </message>
-  <message name="launchSendEmailResponse">
-    <part name="parameters" element="tns:launchSendEmailResponse"/>
+  <message name="findByMemberResponse">
+    <part name="parameters" element="tns:findByMemberResponse"/>
   </message>
   <message name="borrowBook">
     <part name="parameters" element="tns:borrowBook"/>
   </message>
   <message name="borrowBookResponse">
     <part name="parameters" element="tns:borrowBookResponse"/>
-  </message>
-  <message name="findByMember">
-    <part name="parameters" element="tns:findByMember"/>
-  </message>
-  <message name="findByMemberResponse">
-    <part name="parameters" element="tns:findByMemberResponse"/>
   </message>
   <message name="returnBorrowing">
     <part name="parameters" element="tns:returnBorrowing"/>
@@ -59,6 +53,12 @@
   </message>
   <message name="extendBorrowingResponse">
     <part name="parameters" element="tns:extendBorrowingResponse"/>
+  </message>
+  <message name="launchSendEmail">
+    <part name="parameters" element="tns:launchSendEmail"/>
+  </message>
+  <message name="launchSendEmailResponse">
+    <part name="parameters" element="tns:launchSendEmailResponse"/>
   </message>
   <portType name="borrowingWs">
     <operation name="init">
@@ -77,17 +77,13 @@
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/getNotReturnedBorrowingRequest" message="tns:getNotReturnedBorrowing"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/getNotReturnedBorrowingResponse" message="tns:getNotReturnedBorrowingResponse"/>
     </operation>
-    <operation name="launchSendEmail">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/launchSendEmailRequest" message="tns:launchSendEmail"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/launchSendEmailResponse" message="tns:launchSendEmailResponse"/>
+    <operation name="findByMember">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberRequest" message="tns:findByMember"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberResponse" message="tns:findByMemberResponse"/>
     </operation>
     <operation name="borrowBook">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookRequest" message="tns:borrowBook"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookResponse" message="tns:borrowBookResponse"/>
-    </operation>
-    <operation name="findByMember">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberRequest" message="tns:findByMember"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberResponse" message="tns:findByMemberResponse"/>
     </operation>
     <operation name="returnBorrowing">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/returnBorrowingRequest" message="tns:returnBorrowing"/>
@@ -96,6 +92,10 @@
     <operation name="extendBorrowing">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingRequest" message="tns:extendBorrowing"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingResponse" message="tns:extendBorrowingResponse"/>
+    </operation>
+    <operation name="launchSendEmail">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/launchSendEmailRequest" message="tns:launchSendEmail"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/launchSendEmailResponse" message="tns:launchSendEmailResponse"/>
     </operation>
   </portType>
   <binding name="borrowingWsPortBinding" type="tns:borrowingWs">
@@ -136,7 +136,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="launchSendEmail">
+    <operation name="findByMember">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -146,15 +146,6 @@
       </output>
     </operation>
     <operation name="borrowBook">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="findByMember">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -173,6 +164,15 @@
       </output>
     </operation>
     <operation name="extendBorrowing">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="launchSendEmail">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

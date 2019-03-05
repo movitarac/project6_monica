@@ -56,5 +56,33 @@ public class WorkController {
 
         return modelAndView;
     }
+    @RequestMapping(value = "/searchbytitle", method = RequestMethod.GET)
+    public ModelAndView workssearchbytitle(@RequestParam("title") String title) {
+        ModelAndView mv = null;
+        boolean valid;
+
+
+        WorkWeb workWebService = new WorkWeb();
+        WorkWs wsWork = workWebService.getWorkWsPort();
+
+       List<com.racic.lib.client.Work> worksListFoundByTitle = wsWork.findWorksByTitleContain(title);
+       valid= true;
+        valid = wsWork.isValidWorkByTitle(title);
+
+        if (valid == true) {
+            if (title != null) {
+                mv.setViewName("work/worksfound");
+                mv.addObject("worksListFound", worksListFoundByTitle);
+            } else {
+                mv.setViewName("library/error");
+                mv.addObject("msg", "Error occured while processing");
+            }
+        } else {
+            mv.setViewName("library/error");
+            mv.addObject("msg", "Error occured while processing");
+        }
+
+        return mv;
+    }
 
 }

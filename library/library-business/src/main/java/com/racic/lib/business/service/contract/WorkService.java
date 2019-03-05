@@ -11,6 +11,10 @@ public interface WorkService {
 
     List<Work> findWorksByAuthorContain(String author);
 
+    List<Work> findWorksByTitleContain(String title);
+
+    boolean isValidWorkByTitle(String title);
+
     boolean isValidWorkByAuthor(String author);
 
 

@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for borrowBookResponse complex type.
+ * <p>Classe Java pour borrowBookResponse complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="borrowBookResponse">
@@ -36,7 +36,7 @@ public class BorrowBookResponse {
     protected boolean _return;
 
     /**
-     * Gets the value of the return property.
+     * Obtient la valeur de la propriété return.
      * 
      */
     public boolean isReturn() {
@@ -44,7 +44,7 @@ public class BorrowBookResponse {
     }
 
     /**
-     * Sets the value of the return property.
+     * Définit la valeur de la propriété return.
      * 
      */
     public void setReturn(boolean value) {

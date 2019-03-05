@@ -22,4 +22,6 @@ public interface MemberService {
     Member findByUsernameAndPassword(String username, String password);
 
     boolean isValidUser(String userName, String passWord);
+
+    void updateMemberInfo(Member member);
 }

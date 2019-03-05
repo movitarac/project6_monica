@@ -37,21 +37,33 @@ public interface BorrowingWs {
 
     /**
      * 
-     * @param arg1
      * @param arg0
      * @return
      *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "returnBorrowing", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.ReturnBorrowing")
-    @ResponseWrapper(localName = "returnBorrowingResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.ReturnBorrowingResponse")
-    @Action(input = "http://webservice.lib.racic.com/borrowingWs/returnBorrowingRequest", output = "http://webservice.lib.racic.com/borrowingWs/returnBorrowingResponse")
-    public boolean returnBorrowing(
+    @RequestWrapper(localName = "verifyBoksListAvailableSize", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.VerifyBoksListAvailableSize")
+    @ResponseWrapper(localName = "verifyBoksListAvailableSizeResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.VerifyBoksListAvailableSizeResponse")
+    @Action(input = "http://webservice.lib.racic.com/borrowingWs/verifyBoksListAvailableSizeRequest", output = "http://webservice.lib.racic.com/borrowingWs/verifyBoksListAvailableSizeResponse")
+    public boolean verifyBoksListAvailableSize(
         @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        Member arg1);
+        Integer arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns com.racic.lib.client.Borrowing
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findByBorrowingId", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindByBorrowingId")
+    @ResponseWrapper(localName = "findByBorrowingIdResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindByBorrowingIdResponse")
+    @Action(input = "http://webservice.lib.racic.com/borrowingWs/findByBorrowingIdRequest", output = "http://webservice.lib.racic.com/borrowingWs/findByBorrowingIdResponse")
+    public Borrowing findByBorrowingId(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Integer arg0);
 
     /**
      * 
@@ -77,6 +89,36 @@ public interface BorrowingWs {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "returnBorrowing", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.ReturnBorrowing")
+    @ResponseWrapper(localName = "returnBorrowingResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.ReturnBorrowingResponse")
+    @Action(input = "http://webservice.lib.racic.com/borrowingWs/returnBorrowingRequest", output = "http://webservice.lib.racic.com/borrowingWs/returnBorrowingResponse")
+    public boolean returnBorrowing(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Integer arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        Member arg1);
+
+    /**
+     * 
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "launchSendEmail", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.LaunchSendEmail")
+    @ResponseWrapper(localName = "launchSendEmailResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.LaunchSendEmailResponse")
+    @Action(input = "http://webservice.lib.racic.com/borrowingWs/launchSendEmailRequest", output = "http://webservice.lib.racic.com/borrowingWs/launchSendEmailResponse")
+    public boolean launchSendEmail();
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "extendBorrowing", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.ExtendBorrowing")
     @ResponseWrapper(localName = "extendBorrowingResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.ExtendBorrowingResponse")
     @Action(input = "http://webservice.lib.racic.com/borrowingWs/extendBorrowingRequest", output = "http://webservice.lib.racic.com/borrowingWs/extendBorrowingResponse")
@@ -85,21 +127,6 @@ public interface BorrowingWs {
         Integer arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         Member arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "verifyBoksListAvailableSize", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.VerifyBoksListAvailableSize")
-    @ResponseWrapper(localName = "verifyBoksListAvailableSizeResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.VerifyBoksListAvailableSizeResponse")
-    @Action(input = "http://webservice.lib.racic.com/borrowingWs/verifyBoksListAvailableSizeRequest", output = "http://webservice.lib.racic.com/borrowingWs/verifyBoksListAvailableSizeResponse")
-    public boolean verifyBoksListAvailableSize(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0);
 
     /**
      * 
@@ -123,7 +150,7 @@ public interface BorrowingWs {
      * 
      * @param arg0
      * @return
-     *     returns java.util.List<Borrowing>
+     *     returns java.util.List<com.racic.lib.client.Borrowing>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -133,29 +160,5 @@ public interface BorrowingWs {
     public List<Borrowing> findByMember(
         @WebParam(name = "arg0", targetNamespace = "")
         Member arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns Borrowing
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findByBorrowingId", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindByBorrowingId")
-    @ResponseWrapper(localName = "findByBorrowingIdResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindByBorrowingIdResponse")
-    @Action(input = "http://webservice.lib.racic.com/borrowingWs/findByBorrowingIdRequest", output = "http://webservice.lib.racic.com/borrowingWs/findByBorrowingIdResponse")
-    public Borrowing findByBorrowingId(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0);
-
-    /**
-     * 
-     */
-    @WebMethod
-    @RequestWrapper(localName = "launchSendEmail", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.LaunchSendEmail")
-    @ResponseWrapper(localName = "launchSendEmailResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.LaunchSendEmailResponse")
-    @Action(input = "http://webservice.lib.racic.com/borrowingWs/launchSendEmailRequest", output = "http://webservice.lib.racic.com/borrowingWs/launchSendEmailResponse")
-    public boolean launchSendEmail();
 
 }

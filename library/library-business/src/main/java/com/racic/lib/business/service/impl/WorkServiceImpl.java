@@ -33,6 +33,23 @@ public class WorkServiceImpl implements WorkService {
         return workRepository.findWorksByAuthorIsContainingIgnoreCase(author);
     }
 
+    @Override
+    public List<Work> findWorksByTitleContain(String title) {
+        return workRepository.findWorksByTitleIsContainingIgnoreCase(title);
+    }
+
+    @Override
+    public boolean isValidWorkByTitle(String title) {
+        boolean beReturned;
+        List<Work> workListByTitle = workRepository.findWorksByTitleIsContainingIgnoreCase(title);
+        if (workListByTitle.size()>=1) {
+            beReturned = true;
+        } else {
+            beReturned = false;
+        }
+        return beReturned;
+    }
+
 
     public boolean isValidWorkByAuthor(String author) {
         boolean toReturn;

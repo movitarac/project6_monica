@@ -36,21 +36,9 @@ public interface MemberWs {
 
     /**
      * 
-     * @return
-     *     returns java.util.List<Member>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findAll", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindAll")
-    @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindAllResponse")
-    @Action(input = "http://webservice.lib.racic.com/memberWs/findAllRequest", output = "http://webservice.lib.racic.com/memberWs/findAllResponse")
-    public List<Member> findAll();
-
-    /**
-     * 
      * @param arg0
      * @return
-     *     returns Member
+     *     returns com.racic.lib.client.Member
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -66,7 +54,7 @@ public interface MemberWs {
      * @param arg1
      * @param arg0
      * @return
-     *     returns Member
+     *     returns com.racic.lib.client.Member
      */
     @WebMethod
     @WebResult(targetNamespace = "")
@@ -96,5 +84,29 @@ public interface MemberWs {
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateMember", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.UpdateMember")
+    @ResponseWrapper(localName = "updateMemberResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.UpdateMemberResponse")
+    @Action(input = "http://webservice.lib.racic.com/memberWs/updateMemberRequest", output = "http://webservice.lib.racic.com/memberWs/updateMemberResponse")
+    public void updateMember(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Member arg0);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.racic.lib.client.Member>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findAll", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindAll")
+    @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindAllResponse")
+    @Action(input = "http://webservice.lib.racic.com/memberWs/findAllRequest", output = "http://webservice.lib.racic.com/memberWs/findAllResponse")
+    public List<Member> findAll();
 
 }

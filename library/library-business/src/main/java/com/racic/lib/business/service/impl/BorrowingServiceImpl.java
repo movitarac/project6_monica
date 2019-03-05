@@ -90,8 +90,9 @@ public class BorrowingServiceImpl implements BorrowingService {
         calendar.setTime(returnDate);
         calendar.add(Calendar.WEEK_OF_MONTH,4);
         returnDate = calendar.getTime();
+        Date today = new Date();
 
-        if (!borrowingtoBeExtended.isExtended()) {
+        if (!borrowingtoBeExtended.isExtended() && today.before(borrowingtoBeExtended.getReturnDate())) {
 
             System.out.println("new date : " + returnDate + " we are in method extend borrowing");
 
@@ -214,8 +215,9 @@ public class BorrowingServiceImpl implements BorrowingService {
 
         /*SMPT Server configuration*/
         Properties props = new Properties();
-        props.put("mail.smtp.starttls.enable", "true");
+
         props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
@@ -245,7 +247,7 @@ public class BorrowingServiceImpl implements BorrowingService {
                         message.setText(" Dear " + borrow.getMember().getFirstName() + " ,"
                                 + "\n\n you haven't returned your loan for " +
                                 borrow.getBook().getWork().getTitle() +
-                                " . Please return it as soon as possible or before "
+                                " . Please return it as soon as possible because you have exceed your period loan "
                                 + borrow.getReturnDate());
 
                         Transport.send(message);

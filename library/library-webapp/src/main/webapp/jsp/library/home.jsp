@@ -9,5 +9,7 @@
     <br>
     <p>
         <%@include file="../work/workssearch.jsp"%>
+        <br>
+        <%@include file="../work/workssearchtitle.jsp"%>
     </p>
     </body>

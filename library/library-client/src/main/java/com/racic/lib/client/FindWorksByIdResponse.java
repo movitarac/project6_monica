@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for findWorksByIdResponse complex type.
+ * <p>Classe Java pour findWorksByIdResponse complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="findWorksByIdResponse">
@@ -36,7 +36,7 @@ public class FindWorksByIdResponse {
     protected Work _return;
 
     /**
-     * Gets the value of the return property.
+     * Obtient la valeur de la propriété return.
      * 
      * @return
      *     possible object is
@@ -48,7 +48,7 @@ public class FindWorksByIdResponse {
     }
 
     /**
-     * Sets the value of the return property.
+     * Définit la valeur de la propriété return.
      * 
      * @param value
      *     allowed object is

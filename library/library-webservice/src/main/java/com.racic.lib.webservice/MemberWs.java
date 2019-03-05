@@ -42,6 +42,11 @@ public class MemberWs{
     }
 
     @WebMethod
+    public void updateMember(Member member) {
+        memberService.updateMemberInfo(member);
+    }
+
+    @WebMethod
     @PostConstruct
     public void init() {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);

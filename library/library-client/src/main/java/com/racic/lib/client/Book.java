@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for book complex type.
+ * <p>Classe Java pour book complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="book">
@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="available" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="bookId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="borrowing" type="{http://webservice.lib.racic.com/}borrowing" minOccurs="0"/>
  *         &lt;element name="work" type="{http://webservice.lib.racic.com/}work" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -32,18 +31,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "book", propOrder = {
     "available",
     "bookId",
-    "borrowing",
     "work"
 })
 public class Book {
 
     protected boolean available;
     protected String bookId;
-    protected Borrowing borrowing;
     protected Work work;
 
     /**
-     * Gets the value of the available property.
+     * Obtient la valeur de la propriété available.
      * 
      */
     public boolean isAvailable() {
@@ -51,7 +48,7 @@ public class Book {
     }
 
     /**
-     * Sets the value of the available property.
+     * Définit la valeur de la propriété available.
      * 
      */
     public void setAvailable(boolean value) {
@@ -59,7 +56,7 @@ public class Book {
     }
 
     /**
-     * Gets the value of the bookId property.
+     * Obtient la valeur de la propriété bookId.
      * 
      * @return
      *     possible object is
@@ -71,7 +68,7 @@ public class Book {
     }
 
     /**
-     * Sets the value of the bookId property.
+     * Définit la valeur de la propriété bookId.
      * 
      * @param value
      *     allowed object is
@@ -83,31 +80,7 @@ public class Book {
     }
 
     /**
-     * Gets the value of the borrowing property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Borrowing }
-     *     
-     */
-    public Borrowing getBorrowing() {
-        return borrowing;
-    }
-
-    /**
-     * Sets the value of the borrowing property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Borrowing }
-     *     
-     */
-    public void setBorrowing(Borrowing value) {
-        this.borrowing = value;
-    }
-
-    /**
-     * Gets the value of the work property.
+     * Obtient la valeur de la propriété work.
      * 
      * @return
      *     possible object is
@@ -119,7 +92,7 @@ public class Book {
     }
 
     /**
-     * Sets the value of the work property.
+     * Définit la valeur de la propriété work.
      * 
      * @param value
      *     allowed object is
