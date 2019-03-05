@@ -2,9 +2,6 @@
 <hr>
 <h2 class="searchbook">Book by Author</h2>
 <hr>
-<hr>
-<hr>
-
 <form:form method="GET" name="workssearch" action="${pageContext.request.contextPath}/searchbyauthor">
     <table class="searchbook">
         <tr>
