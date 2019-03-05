@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.racic.lib</groupId>
+    <artifactId>library</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.racic.lib</groupId>
+  <artifactId>library-client</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>library-client</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+      <!-- MODULES -->
+
+      <dependency>
+          <groupId>com.racic.lib</groupId>
+          <artifactId>library-business</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.racic.lib</groupId>
+          <artifactId>library-model</artifactId>
+      </dependency>
+
+      <!--3rd party library-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+ <!--<plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxws-maven-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+            &lt;!&ndash;Generate webservice client&ndash;&gt;
+            <execution>
+					<id>wsimport-for-all</id>
+					<goals>
+						<goal>wsimport</goal>
+					</goals>
+					<configuration>
+						<sourceDestDir>${project.basedir}/src/main/java/wsclient-generated/</sourceDestDir>
+						<wsdlUrls>
+							<wsdlUrl>http://localhost:8080/library-webservice/ws/workWs?wsdl</wsdlUrl>
+							<wsdlUrl>http://localhost:8080/library-webservice/ws/borrowingWs?wsdl</wsdlUrl>
+							<wsdlUrl>http://localhost:8080/library-webservice/ws/bookWs?wsdl</wsdlUrl>
+							<wsdlUrl>http://localhost:8080/library-webservice/ws/memberWs?wsdl</wsdlUrl>
+						</wsdlUrls>
+						</configuration>
+				</execution>
+        </executions>
+      </plugin>
+    </plugins>-->
+
+  </build>
+</project>
