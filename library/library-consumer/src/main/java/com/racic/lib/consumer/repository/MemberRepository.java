@@ -16,4 +16,5 @@ public interface MemberRepository extends CrudRepository <Member,Integer>{
 
 	Member findByUsernameAndPassword(String username, String password);
 
+
 }

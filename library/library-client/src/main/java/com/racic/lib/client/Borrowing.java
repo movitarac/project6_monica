@@ -1,14 +1,17 @@
 
 package com.racic.lib.client;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for borrowing complex type.
+ * <p>Classe Java pour borrowing complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="borrowing">
@@ -53,7 +56,7 @@ public class Borrowing {
     protected String status;
 
     /**
-     * Gets the value of the book property.
+     * Obtient la valeur de la propriété book.
      * 
      * @return
      *     possible object is
@@ -65,7 +68,7 @@ public class Borrowing {
     }
 
     /**
-     * Sets the value of the book property.
+     * Définit la valeur de la propriété book.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +80,7 @@ public class Borrowing {
     }
 
     /**
-     * Gets the value of the extended property.
+     * Obtient la valeur de la propriété extended.
      * 
      */
     public boolean isExtended() {
@@ -85,7 +88,7 @@ public class Borrowing {
     }
 
     /**
-     * Sets the value of the extended property.
+     * Définit la valeur de la propriété extended.
      * 
      */
     public void setExtended(boolean value) {
@@ -93,7 +96,7 @@ public class Borrowing {
     }
 
     /**
-     * Gets the value of the idborrow property.
+     * Obtient la valeur de la propriété idborrow.
      * 
      * @return
      *     possible object is
@@ -105,7 +108,7 @@ public class Borrowing {
     }
 
     /**
-     * Sets the value of the idborrow property.
+     * Définit la valeur de la propriété idborrow.
      * 
      * @param value
      *     allowed object is
@@ -117,7 +120,7 @@ public class Borrowing {
     }
 
     /**
-     * Gets the value of the issueDate property.
+     * Obtient la valeur de la propriété issueDate.
      * 
      * @return
      *     possible object is
@@ -129,7 +132,7 @@ public class Borrowing {
     }
 
     /**
-     * Sets the value of the issueDate property.
+     * Définit la valeur de la propriété issueDate.
      * 
      * @param value
      *     allowed object is
@@ -141,20 +144,19 @@ public class Borrowing {
     }
 
     /**
-     * Gets the value of the member property.
+     * Obtient la valeur de la propriété member.
      * 
      * @return
      *     possible object is
      *     {@link Member }
      *     
      */
-    @XmlTransient
     public Member getMember() {
         return member;
     }
 
     /**
-     * Sets the value of the member property.
+     * Définit la valeur de la propriété member.
      * 
      * @param value
      *     allowed object is
@@ -166,7 +168,7 @@ public class Borrowing {
     }
 
     /**
-     * Gets the value of the returnDate property.
+     * Obtient la valeur de la propriété returnDate.
      * 
      * @return
      *     possible object is
@@ -178,7 +180,7 @@ public class Borrowing {
     }
 
     /**
-     * Sets the value of the returnDate property.
+     * Définit la valeur de la propriété returnDate.
      * 
      * @param value
      *     allowed object is
@@ -190,7 +192,7 @@ public class Borrowing {
     }
 
     /**
-     * Gets the value of the status property.
+     * Obtient la valeur de la propriété status.
      * 
      * @return
      *     possible object is
@@ -202,7 +204,7 @@ public class Borrowing {
     }
 
     /**
-     * Sets the value of the status property.
+     * Définit la valeur de la propriété status.
      * 
      * @param value
      *     allowed object is

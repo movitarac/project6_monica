@@ -94,7 +94,7 @@ public class BorrowingController {
             } else {
                 List<com.racic.lib.client.Borrowing> borrowingList = borrowingWs.findByMember(member);
                 mv.addObject("borrowingList", borrowingList);
-                msgError += " You cannot extend twice the borrowing period or the Book is already returned!!";
+                msgError += " You cannot extend twice the borrowing period or your loan period is already exceed!!";
                 mv.addObject("extendOK",extendOK);
                 mv.addObject("msgError", msgError);
             }

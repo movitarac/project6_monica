@@ -19,13 +19,15 @@ import javax.xml.namespace.QName;
  * type definitions, element declarations and model 
  * groups.  Factory methods for each of these are 
  * provided in this class.
- * 
+ *
  */
 @XmlRegistry
 public class ObjectFactory {
 
     private final static QName _Init_QNAME = new QName("http://webservice.lib.racic.com/", "init");
+    private final static QName _UpdateMember_QNAME = new QName("http://webservice.lib.racic.com/", "updateMember");
     private final static QName _FindByUsernameAndPasswordResponse_QNAME = new QName("http://webservice.lib.racic.com/", "findByUsernameAndPasswordResponse");
+    private final static QName _UpdateMemberResponse_QNAME = new QName("http://webservice.lib.racic.com/", "updateMemberResponse");
     private final static QName _InitResponse_QNAME = new QName("http://webservice.lib.racic.com/", "initResponse");
     private final static QName _FindMemberByEmail_QNAME = new QName("http://webservice.lib.racic.com/", "findMemberByEmail");
     private final static QName _FindMemberByEmailResponse_QNAME = new QName("http://webservice.lib.racic.com/", "findMemberByEmailResponse");
@@ -37,30 +39,46 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.racic.lib.webservice
-     * 
+     *
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link Init }
-     * 
+     *
      */
     public Init createInit() {
         return new Init();
     }
 
     /**
+     * Create an instance of {@link UpdateMember }
+     *
+     */
+    public UpdateMember createUpdateMember() {
+        return new UpdateMember();
+    }
+
+    /**
      * Create an instance of {@link FindByUsernameAndPasswordResponse }
-     * 
+     *
      */
     public FindByUsernameAndPasswordResponse createFindByUsernameAndPasswordResponse() {
         return new FindByUsernameAndPasswordResponse();
     }
 
     /**
+     * Create an instance of {@link UpdateMemberResponse }
+     *
+     */
+    public UpdateMemberResponse createUpdateMemberResponse() {
+        return new UpdateMemberResponse();
+    }
+
+    /**
      * Create an instance of {@link InitResponse }
-     * 
+     *
      */
     public InitResponse createInitResponse() {
         return new InitResponse();
@@ -68,7 +86,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FindMemberByEmail }
-     * 
+     *
      */
     public FindMemberByEmail createFindMemberByEmail() {
         return new FindMemberByEmail();
@@ -76,7 +94,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FindMemberByEmailResponse }
-     * 
+     *
      */
     public FindMemberByEmailResponse createFindMemberByEmailResponse() {
         return new FindMemberByEmailResponse();
@@ -84,7 +102,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link IsValidUserResponse }
-     * 
+     *
      */
     public IsValidUserResponse createIsValidUserResponse() {
         return new IsValidUserResponse();
@@ -92,7 +110,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FindAllResponse }
-     * 
+     *
      */
     public FindAllResponse createFindAllResponse() {
         return new FindAllResponse();
@@ -100,7 +118,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link IsValidUser }
-     * 
+     *
      */
     public IsValidUser createIsValidUser() {
         return new IsValidUser();
@@ -108,7 +126,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FindAll }
-     * 
+     *
      */
     public FindAll createFindAll() {
         return new FindAll();
@@ -116,55 +134,23 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link FindByUsernameAndPassword }
-     * 
+     *
      */
     public FindByUsernameAndPassword createFindByUsernameAndPassword() {
         return new FindByUsernameAndPassword();
     }
 
     /**
-     * Create an instance of {@link Work }
-     * 
-     */
-    public Work createWork() {
-        return new Work();
-    }
-
-    /**
-     * Create an instance of {@link Book }
-     * 
-     */
-    public Book createBook() {
-        return new Book();
-    }
-
-    /**
-     * Create an instance of {@link Library }
-     * 
-     */
-    public Library createLibrary() {
-        return new Library();
-    }
-
-    /**
      * Create an instance of {@link Member }
-     * 
+     *
      */
     public Member createMember() {
         return new Member();
     }
 
     /**
-     * Create an instance of {@link Borrowing }
-     * 
-     */
-    public Borrowing createBorrowing() {
-        return new Borrowing();
-    }
-
-    /**
      * Create an instance of {@link User }
-     * 
+     *
      */
     public User createUser() {
         return new User();
@@ -172,7 +158,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Init }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "init")
     public JAXBElement<Init> createInit(Init value) {
@@ -180,8 +166,17 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateMember }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "updateMember")
+    public JAXBElement<UpdateMember> createUpdateMember(UpdateMember value) {
+        return new JAXBElement<UpdateMember>(_UpdateMember_QNAME, UpdateMember.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindByUsernameAndPasswordResponse }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "findByUsernameAndPasswordResponse")
     public JAXBElement<FindByUsernameAndPasswordResponse> createFindByUsernameAndPasswordResponse(FindByUsernameAndPasswordResponse value) {
@@ -189,8 +184,17 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateMemberResponse }{@code >}}
+     *
+     */
+    @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "updateMemberResponse")
+    public JAXBElement<UpdateMemberResponse> createUpdateMemberResponse(UpdateMemberResponse value) {
+        return new JAXBElement<UpdateMemberResponse>(_UpdateMemberResponse_QNAME, UpdateMemberResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link InitResponse }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "initResponse")
     public JAXBElement<InitResponse> createInitResponse(InitResponse value) {
@@ -199,7 +203,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindMemberByEmail }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "findMemberByEmail")
     public JAXBElement<FindMemberByEmail> createFindMemberByEmail(FindMemberByEmail value) {
@@ -208,7 +212,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindMemberByEmailResponse }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "findMemberByEmailResponse")
     public JAXBElement<FindMemberByEmailResponse> createFindMemberByEmailResponse(FindMemberByEmailResponse value) {
@@ -217,7 +221,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link IsValidUserResponse }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "isValidUserResponse")
     public JAXBElement<IsValidUserResponse> createIsValidUserResponse(IsValidUserResponse value) {
@@ -226,7 +230,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindAllResponse }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "findAllResponse")
     public JAXBElement<FindAllResponse> createFindAllResponse(FindAllResponse value) {
@@ -235,7 +239,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link IsValidUser }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "isValidUser")
     public JAXBElement<IsValidUser> createIsValidUser(IsValidUser value) {
@@ -244,7 +248,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindAll }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "findAll")
     public JAXBElement<FindAll> createFindAll(FindAll value) {
@@ -253,7 +257,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link FindByUsernameAndPassword }{@code >}}
-     * 
+     *
      */
     @XmlElementDecl(namespace = "http://webservice.lib.racic.com/", name = "findByUsernameAndPassword")
     public JAXBElement<FindByUsernameAndPassword> createFindByUsernameAndPassword(FindByUsernameAndPassword value) {

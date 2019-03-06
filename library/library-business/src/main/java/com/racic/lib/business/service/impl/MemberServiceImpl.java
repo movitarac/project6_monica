@@ -52,6 +52,11 @@ public class MemberServiceImpl implements MemberService {
     	return toReturn;
 	}
 
+	@Override
+	public void updateMemberInfo(Member member) {
+		memberRepository.save(member);
+	}
+
 
 	/*
 	@Override

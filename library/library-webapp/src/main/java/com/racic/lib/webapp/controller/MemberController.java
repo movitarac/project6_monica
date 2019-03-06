@@ -94,16 +94,35 @@ public class MemberController {
 		return modelAndView;
 	}
 
-
-	////////////////////////TEST/////////////////////////////
-/*
-	@RequestMapping(value="/addusermember/{booksids}",method = RequestMethod.GET)
-	public @ResponseBody String getBorrowingsByMember(@PathVariable String booksids) {
-		String[] idsbooks = booksids.split("-");
-		List<String> listDetails = new ArrayList<>();
-		Collections.addAll(listDetails,idsbooks);
-		return "add borrowing list";
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String update() {
+		return "member/editprofile";
 	}
-*/
+
+
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public ModelAndView update(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		com.racic.lib.client.Member loggedIn =(com.racic.lib.client.Member)request.getSession().getAttribute("memberConnected");
+		MemberWeb memberWeb = new MemberWeb();
+		MemberWs memberWs = memberWeb.getMemberWsPort();
+
+		if (loggedIn!=null) {
+			loggedIn.setFirstName(request.getParameter("firstname"));
+			loggedIn.setLastName(request.getParameter("lastname"));
+			loggedIn.setAddress(request.getParameter("address"));
+			loggedIn.setUsername(request.getParameter("username"));
+
+			memberWs.updateMember(loggedIn);
+			mv.addObject("memberConnected", loggedIn);
+			mv.setViewName("member/profile");
+		}
+		else {
+			mv = new ModelAndView("library/error");
+		}
+		return mv;
+	}
+
+
 
 }

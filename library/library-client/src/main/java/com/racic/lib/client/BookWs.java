@@ -37,18 +37,6 @@ public interface BookWs {
     /**
      * 
      * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updateBook", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.UpdateBook")
-    @ResponseWrapper(localName = "updateBookResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.UpdateBookResponse")
-    @Action(input = "http://webservice.lib.racic.com/bookWs/updateBookRequest", output = "http://webservice.lib.racic.com/bookWs/updateBookResponse")
-    public void updateBook(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Book arg0);
-
-    /**
-     * 
-     * @param arg0
      * @return
      *     returns java.util.List<com.racic.lib.client.Book>
      */
@@ -64,8 +52,20 @@ public interface BookWs {
     /**
      * 
      * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateBook", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.UpdateBook")
+    @ResponseWrapper(localName = "updateBookResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.UpdateBookResponse")
+    @Action(input = "http://webservice.lib.racic.com/bookWs/updateBookRequest", output = "http://webservice.lib.racic.com/bookWs/updateBookResponse")
+    public void updateBook(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Book arg0);
+
+    /**
+     * 
+     * @param arg0
      * @return
-     *     returns Book
+     *     returns com.racic.lib.client.Book
      */
     @WebMethod
     @WebResult(targetNamespace = "")

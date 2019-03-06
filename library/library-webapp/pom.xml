@@ -236,7 +236,7 @@
 					</goals>
 					<configuration>
 						<executable>${tool.wsgen}</executable>
-						<sei>com.racic.lib.webservice.BorrowingWs</sei>
+						<sei>BorrowingWs</sei>
 						<genWsdl>true</genWsdl>
 					</configuration>
 				</execution>
@@ -247,7 +247,7 @@
 					</goals>
 					<configuration>
 						<executable>${tool.wsgen}</executable>
-						<sei>com.racic.lib.webservice.WorkWs</sei>
+						<sei>WorkWs</sei>
 						<genWsdl>true</genWsdl>
 					</configuration>
 				</execution>
@@ -258,7 +258,7 @@
 					</goals>
 					<configuration>
 						<executable>${tool.wsgen}</executable>
-						<sei>com.racic.lib.webservice.MemberWs</sei>
+						<sei>MemberWs</sei>
 						<genWsdl>true</genWsdl>
 					</configuration>
 				</execution>

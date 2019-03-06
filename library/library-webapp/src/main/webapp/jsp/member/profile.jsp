@@ -3,7 +3,7 @@
 <body class="profile">
 <%@ include file="../_include/header.jsp" %>
 <main role="main" class="inner cover">
-<form:form method="POST" action="${pageContext.request.contextPath}/borrowinglist">
+    <%--<form:form method="POST" action="${pageContext.request.contextPath}/borrowinglist">--%>
 
         <h1 class="persoinfo">Your personal information</h1>
         <p class="lead">
@@ -12,9 +12,11 @@
             <span class="profDetail">Username: </span> <span class="profInfo">${memberConnected.username}</span> <br>
             <span class="profDetail">Email: </span> <span class="profInfo">${memberConnected.email}</span> <br>
             <span class="profDetail">Address: </span> <span class="profInfo">${memberConnected.address}</span> <br>
-
+            <a class="badge badge-info" href="${pageContext.request.contextPath}/update">edit profile</a>
         </p>
-</form:form>
+
+
+<%--</form:form>--%>
 </main>
 
 </body>

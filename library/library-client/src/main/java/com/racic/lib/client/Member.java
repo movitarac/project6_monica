@@ -1,15 +1,15 @@
 
 package com.racic.lib.client;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for member complex type.
+ * <p>Classe Java pour member complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="member">
@@ -17,7 +17,6 @@ import javax.xml.bind.annotation.*;
  *     &lt;extension base="{http://webservice.lib.racic.com/}user">
  *       &lt;sequence>
  *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="borrowing" type="{http://webservice.lib.racic.com/}borrowing" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="firstName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="lastName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -32,7 +31,6 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "member", propOrder = {
     "address",
-    "borrowing",
     "email",
     "firstName",
     "lastName"
@@ -42,14 +40,12 @@ public class Member
 {
 
     protected String address;
-    @XmlElement(nillable = true)
-    protected List<Borrowing> borrowing;
     protected String email;
     protected String firstName;
     protected String lastName;
 
     /**
-     * Gets the value of the address property.
+     * Obtient la valeur de la propriété address.
      * 
      * @return
      *     possible object is
@@ -61,7 +57,7 @@ public class Member
     }
 
     /**
-     * Sets the value of the address property.
+     * Définit la valeur de la propriété address.
      * 
      * @param value
      *     allowed object is
@@ -73,36 +69,7 @@ public class Member
     }
 
     /**
-     * Gets the value of the borrowing property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the borrowing property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getBorrowing().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Borrowing }
-     * 
-     * 
-     */
-    public List<Borrowing> getBorrowing() {
-        if (borrowing == null) {
-            borrowing = new ArrayList<Borrowing>();
-        }
-        return this.borrowing;
-    }
-
-    /**
-     * Gets the value of the email property.
+     * Obtient la valeur de la propriété email.
      * 
      * @return
      *     possible object is
@@ -114,7 +81,7 @@ public class Member
     }
 
     /**
-     * Sets the value of the email property.
+     * Définit la valeur de la propriété email.
      * 
      * @param value
      *     allowed object is
@@ -126,7 +93,7 @@ public class Member
     }
 
     /**
-     * Gets the value of the firstName property.
+     * Obtient la valeur de la propriété firstName.
      * 
      * @return
      *     possible object is
@@ -138,7 +105,7 @@ public class Member
     }
 
     /**
-     * Sets the value of the firstName property.
+     * Définit la valeur de la propriété firstName.
      * 
      * @param value
      *     allowed object is
@@ -150,7 +117,7 @@ public class Member
     }
 
     /**
-     * Gets the value of the lastName property.
+     * Obtient la valeur de la propriété lastName.
      * 
      * @return
      *     possible object is
@@ -162,7 +129,7 @@ public class Member
     }
 
     /**
-     * Sets the value of the lastName property.
+     * Définit la valeur de la propriété lastName.
      * 
      * @param value
      *     allowed object is

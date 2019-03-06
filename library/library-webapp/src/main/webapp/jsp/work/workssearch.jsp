@@ -1,16 +1,17 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <hr>
-<h2 class="searchbook">Find your book</h2>
+<h2 class="searchbook">Book by Author</h2>
 <hr>
 <form:form method="GET" name="workssearch" action="${pageContext.request.contextPath}/searchbyauthor">
     <table class="searchbook">
         <tr>
             <label for="inputAuthor" class="sr-only">
-                <td>Author</td>
+                <td> Author </td>
             </label>
             <td><input type="text" id="inputAuthor"
                        class="form-control" placeholder="author" name="author"/></td>
         </tr>
+
 
         <tr>
 
@@ -19,3 +20,4 @@
         </tr>
     </table>
 </form:form>
+

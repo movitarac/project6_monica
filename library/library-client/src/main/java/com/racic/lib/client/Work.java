@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for work complex type.
+ * <p>Classe Java pour work complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="work">
@@ -62,7 +62,7 @@ public class Work {
     protected Integer worksId;
 
     /**
-     * Gets the value of the author property.
+     * Obtient la valeur de la propriété author.
      * 
      * @return
      *     possible object is
@@ -74,7 +74,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the author property.
+     * Définit la valeur de la propriété author.
      * 
      * @param value
      *     allowed object is
@@ -86,7 +86,7 @@ public class Work {
     }
 
     /**
-     * Gets the value of the bookDescription property.
+     * Obtient la valeur de la propriété bookDescription.
      * 
      * @return
      *     possible object is
@@ -98,7 +98,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the bookDescription property.
+     * Définit la valeur de la propriété bookDescription.
      * 
      * @param value
      *     allowed object is
@@ -139,7 +139,7 @@ public class Work {
     }
 
     /**
-     * Gets the value of the copiesAvailable property.
+     * Obtient la valeur de la propriété copiesAvailable.
      * 
      */
     public int getCopiesAvailable() {
@@ -147,7 +147,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the copiesAvailable property.
+     * Définit la valeur de la propriété copiesAvailable.
      * 
      */
     public void setCopiesAvailable(int value) {
@@ -155,7 +155,7 @@ public class Work {
     }
 
     /**
-     * Gets the value of the imageUrl property.
+     * Obtient la valeur de la propriété imageUrl.
      * 
      * @return
      *     possible object is
@@ -167,7 +167,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the imageUrl property.
+     * Définit la valeur de la propriété imageUrl.
      * 
      * @param value
      *     allowed object is
@@ -179,7 +179,7 @@ public class Work {
     }
 
     /**
-     * Gets the value of the library property.
+     * Obtient la valeur de la propriété library.
      * 
      * @return
      *     possible object is
@@ -191,7 +191,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the library property.
+     * Définit la valeur de la propriété library.
      * 
      * @param value
      *     allowed object is
@@ -203,7 +203,7 @@ public class Work {
     }
 
     /**
-     * Gets the value of the publicationYear property.
+     * Obtient la valeur de la propriété publicationYear.
      * 
      */
     public int getPublicationYear() {
@@ -211,7 +211,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the publicationYear property.
+     * Définit la valeur de la propriété publicationYear.
      * 
      */
     public void setPublicationYear(int value) {
@@ -219,7 +219,7 @@ public class Work {
     }
 
     /**
-     * Gets the value of the title property.
+     * Obtient la valeur de la propriété title.
      * 
      * @return
      *     possible object is
@@ -231,7 +231,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the title property.
+     * Définit la valeur de la propriété title.
      * 
      * @param value
      *     allowed object is
@@ -243,7 +243,7 @@ public class Work {
     }
 
     /**
-     * Gets the value of the worksId property.
+     * Obtient la valeur de la propriété worksId.
      * 
      * @return
      *     possible object is
@@ -255,7 +255,7 @@ public class Work {
     }
 
     /**
-     * Sets the value of the worksId property.
+     * Définit la valeur de la propriété worksId.
      * 
      * @param value
      *     allowed object is

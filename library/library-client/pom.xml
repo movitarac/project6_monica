@@ -34,21 +34,21 @@
     </dependency>
   </dependencies>
 
-  <build>
- <!--<plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jaxws-maven-plugin</artifactId>
-        <version>2.5</version>
-        <executions>
-            &lt;!&ndash;Generate webservice client&ndash;&gt;
-            <execution>
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.5</version>
+                <executions>-->
+            <!--Generate webservice client-->
+           <!-- <execution>
 					<id>wsimport-for-all</id>
 					<goals>
 						<goal>wsimport</goal>
 					</goals>
 					<configuration>
-						<sourceDestDir>${project.basedir}/src/main/java/wsclient-generated/</sourceDestDir>
+						<sourceDestDir>${project.basedir}/src/main/java/wsclient/</sourceDestDir>
 						<wsdlUrls>
 							<wsdlUrl>http://localhost:8080/library-webservice/ws/workWs?wsdl</wsdlUrl>
 							<wsdlUrl>http://localhost:8080/library-webservice/ws/borrowingWs?wsdl</wsdlUrl>
@@ -59,7 +59,7 @@
 				</execution>
         </executions>
       </plugin>
-    </plugins>-->
+    </plugins>
 
-  </build>
+  </build>-->
 </project>

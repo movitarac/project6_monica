@@ -36,48 +36,6 @@ public interface WorkWs {
 
     /**
      * 
-     * @return
-     *     returns java.util.List<Work>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getAll", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.GetAll")
-    @ResponseWrapper(localName = "getAllResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.GetAllResponse")
-    @Action(input = "http://webservice.lib.racic.com/workWs/getAllRequest", output = "http://webservice.lib.racic.com/workWs/getAllResponse")
-    public List<Work> getAll();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns Work
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findWorksById", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksById")
-    @ResponseWrapper(localName = "findWorksByIdResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByIdResponse")
-    @Action(input = "http://webservice.lib.racic.com/workWs/findWorksByIdRequest", output = "http://webservice.lib.racic.com/workWs/findWorksByIdResponse")
-    public Work findWorksById(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<Work>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findWorksByAuthorContain", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByAuthorContain")
-    @ResponseWrapper(localName = "findWorksByAuthorContainResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByAuthorContainResponse")
-    @Action(input = "http://webservice.lib.racic.com/workWs/findWorksByAuthorContainRequest", output = "http://webservice.lib.racic.com/workWs/findWorksByAuthorContainResponse")
-    public List<Work> findWorksByAuthorContain(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns boolean
@@ -90,5 +48,80 @@ public interface WorkWs {
     public boolean isValidWorkByAuthor(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<com.racic.lib.client.Work>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findWorksByAuthorContain", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByAuthorContain")
+    @ResponseWrapper(localName = "findWorksByAuthorContainResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByAuthorContainResponse")
+    @Action(input = "http://webservice.lib.racic.com/workWs/findWorksByAuthorContainRequest", output = "http://webservice.lib.racic.com/workWs/findWorksByAuthorContainResponse")
+    public List<Work> findWorksByAuthorContain(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+
+    /**
+     *
+     * @param arg0
+     * @return
+     *     returns java.util.List<com.racic.lib.client.Work>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findWorksByTitleContain", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByTitleContain")
+    @ResponseWrapper(localName = "findWorksByTitleContainResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByTitleContainResponse")
+    @Action(input = "http://webservice.lib.racic.com/workWs/findWorksByTitleContainRequest", output = "http://webservice.lib.racic.com/workWs/findWorksByTitleContainResponse")
+    public List<Work> findWorksByTitleContain(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0);
+
+    /**
+     *
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "isValidWorkByTitle", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.IsValidWorkByTitle")
+    @ResponseWrapper(localName = "isValidWorkByTitleResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.IsValidWorkByTitleResponse")
+    @Action(input = "http://webservice.lib.racic.com/workWs/isValidWorkByTitleRequest", output = "http://webservice.lib.racic.com/workWs/isValidWorkByTitleResponse")
+    public boolean isValidWorkByTitle(
+            @WebParam(name = "arg0", targetNamespace = "")
+                    String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns com.racic.lib.client.Work
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "findWorksById", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksById")
+    @ResponseWrapper(localName = "findWorksByIdResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.FindWorksByIdResponse")
+    @Action(input = "http://webservice.lib.racic.com/workWs/findWorksByIdRequest", output = "http://webservice.lib.racic.com/workWs/findWorksByIdResponse")
+    public Work findWorksById(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Integer arg0);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.racic.lib.client.Work>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getAll", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.GetAll")
+    @ResponseWrapper(localName = "getAllResponse", targetNamespace = "http://webservice.lib.racic.com/", className = "com.racic.lib.client.GetAllResponse")
+    @Action(input = "http://webservice.lib.racic.com/workWs/getAllRequest", output = "http://webservice.lib.racic.com/workWs/getAllResponse")
+    public List<Work> getAll();
+
+
 
 }

@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for launchSendEmailResponse complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * <p>Classe Java pour launchSendEmailResponse complex type.
+ * 
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * 
  * <pre>
  * &lt;complexType name="launchSendEmailResponse">
  *   &lt;complexContent>
@@ -23,12 +23,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "launchSendEmailResponse", propOrder = {
-        "_return"
+    "_return"
 })
 public class LaunchSendEmailResponse {
 
@@ -36,16 +36,16 @@ public class LaunchSendEmailResponse {
     protected boolean _return;
 
     /**
-     * Gets the value of the return property.
-     *
+     * Obtient la valeur de la propriété return.
+     * 
      */
     public boolean isReturn() {
         return _return;
     }
 
     /**
-     * Sets the value of the return property.
-     *
+     * Définit la valeur de la propriété return.
+     * 
      */
     public void setReturn(boolean value) {
         this._return = value;

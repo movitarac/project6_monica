@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for user complex type.
+ * <p>Classe Java pour user complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="user">
@@ -44,7 +44,7 @@ public class User {
     protected String username;
 
     /**
-     * Gets the value of the iduser property.
+     * Obtient la valeur de la propriété iduser.
      * 
      * @return
      *     possible object is
@@ -56,7 +56,7 @@ public class User {
     }
 
     /**
-     * Sets the value of the iduser property.
+     * Définit la valeur de la propriété iduser.
      * 
      * @param value
      *     allowed object is
@@ -68,7 +68,7 @@ public class User {
     }
 
     /**
-     * Gets the value of the password property.
+     * Obtient la valeur de la propriété password.
      * 
      * @return
      *     possible object is
@@ -80,7 +80,7 @@ public class User {
     }
 
     /**
-     * Sets the value of the password property.
+     * Définit la valeur de la propriété password.
      * 
      * @param value
      *     allowed object is
@@ -92,7 +92,7 @@ public class User {
     }
 
     /**
-     * Gets the value of the username property.
+     * Obtient la valeur de la propriété username.
      * 
      * @return
      *     possible object is
@@ -104,7 +104,7 @@ public class User {
     }
 
     /**
-     * Sets the value of the username property.
+     * Définit la valeur de la propriété username.
      * 
      * @param value
      *     allowed object is

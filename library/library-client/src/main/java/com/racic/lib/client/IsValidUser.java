@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for isValidUser complex type.
+ * <p>Classe Java pour isValidUser complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="isValidUser">
@@ -37,7 +37,7 @@ public class IsValidUser {
     protected String arg1;
 
     /**
-     * Gets the value of the arg0 property.
+     * Obtient la valeur de la propriété arg0.
      * 
      * @return
      *     possible object is
@@ -49,7 +49,7 @@ public class IsValidUser {
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Définit la valeur de la propriété arg0.
      * 
      * @param value
      *     allowed object is
@@ -61,7 +61,7 @@ public class IsValidUser {
     }
 
     /**
-     * Gets the value of the arg1 property.
+     * Obtient la valeur de la propriété arg1.
      * 
      * @return
      *     possible object is
@@ -73,7 +73,7 @@ public class IsValidUser {
     }
 
     /**
-     * Sets the value of the arg1 property.
+     * Définit la valeur de la propriété arg1.
      * 
      * @param value
      *     allowed object is

@@ -37,6 +37,16 @@ public class WorkWs {
     }
 
     @WebMethod
+    public List<Work> findWorksByTitleContain(String title) {
+        return workService.findWorksByTitleContain(title);
+    }
+
+    @WebMethod
+    public boolean isValidWorkByTitle(String title) {
+        return workService.isValidWorkByTitle(title);
+    }
+
+    @WebMethod
     public List<Work> getAll() {
 
         return  workService.getAll();
