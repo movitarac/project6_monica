@@ -6,11 +6,12 @@
     <table class="searchbook">
         <tr>
             <label for="inputAuthor" class="sr-only">
-                <td>Author</td>
+                <td> Author </td>
             </label>
             <td><input type="text" id="inputAuthor"
                        class="form-control" placeholder="author" name="author"/></td>
         </tr>
+
 
         <tr>
 
