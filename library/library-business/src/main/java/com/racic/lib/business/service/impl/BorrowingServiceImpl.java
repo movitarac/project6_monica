@@ -103,14 +103,22 @@ public class BorrowingServiceImpl implements BorrowingService {
             borrowingRepository.save(borrowingtoBeExtended);
 
             toreturn = true;
-        } else {
+        } else if (borrowingtoBeExtended.isExtended()){
             try {
-                throw new ExtendFunctionnalException("Cannot extend the borrowing, the loan period is already passed");
+                throw new ExtendFunctionnalException("the book is already extended, the member cannot extend twice");
             } catch (ExtendFunctionnalException e) {
                 e.printStackTrace();
             }
-            System.out.println("cannot extend the borrowing - an exception is thrown");
+            System.out.println("cannot extend the borrowing because it has been already extended- an exception is thrown");
             toreturn = false;
+        } else {
+            try {
+                throw  new ExtendFunctionnalException("Cannot extend the borrowing, the loan period is already passed");
+            } catch (ExtendFunctionnalException e) {
+                e.printStackTrace();
+            }
+            toreturn = false;
+            System.out.println("cannot extend the borrowing because of the loan period- an exception is thrown");
         }
         System.out.println(returnDate + " we are in method extend borrowing");
 
