@@ -3,6 +3,7 @@ package com.racic.lib.business.service.impl;
 import com.racic.lib.business.service.Util.Utils;
 import com.racic.lib.business.service.contract.BookService;
 import com.racic.lib.business.service.contract.BorrowingService;
+import com.racic.lib.business.service.exception.ExtendFunctionnalException;
 import com.racic.lib.consumer.repository.BookRepository;
 import com.racic.lib.consumer.repository.BorrowingRepository;
 import com.racic.lib.consumer.repository.WorkRepository;
@@ -103,7 +104,12 @@ public class BorrowingServiceImpl implements BorrowingService {
 
             toreturn = true;
         } else {
-            System.out.println("cannot extend the borrowing");
+            try {
+                throw new ExtendFunctionnalException("Cannot extend the borrowing, the loan period is already passed");
+            } catch (ExtendFunctionnalException e) {
+                e.printStackTrace();
+            }
+            System.out.println("cannot extend the borrowing - an exception is thrown");
             toreturn = false;
         }
         System.out.println(returnDate + " we are in method extend borrowing");
