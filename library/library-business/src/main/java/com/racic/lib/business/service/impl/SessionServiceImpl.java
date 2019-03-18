@@ -35,6 +35,15 @@ public class SessionServiceImpl implements SessionService {
         return sessionRepository.findById(sessionId).get();
     }
 
+    //methode security
+    //private -- not exposed as webmethod
+    public boolean checkSession(Integer idSession) {
+        boolean toreturn;
+        toreturn = true;
+        //update every date terminaison
+        //on peut faire la recherche
+        return toreturn;
+    }
     @Override
     public Session findSessionByMember(Member member) {
         return sessionRepository.findByMember(member);
@@ -57,9 +66,8 @@ public class SessionServiceImpl implements SessionService {
         String sessionTimeOutString= new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(sessionTimeOut);
 
         session.setMember(member);
-        session.setStatusSession(Utils.SessionStatusEnum.VALID.getValue());
+
         session.setSessionTimeIN(sessionTimeIn);
-        session.setSessionTimeOut(sessionTimeOut);
         sessionRepository.save(session);
         toreturn = true;
         return toreturn;

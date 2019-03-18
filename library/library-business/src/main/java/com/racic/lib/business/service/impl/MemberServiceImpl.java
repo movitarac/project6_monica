@@ -46,11 +46,15 @@ public class MemberServiceImpl implements MemberService {
     	boolean toReturn;
     	if (validMember !=null) {
     		toReturn = true;
+    		//create new Session
+
 		} else{
     		toReturn = false;
 		}
     	return toReturn;
 	}
+
+	//private ne met pas dans le contract no override
 
 	@Override
 	public void updateMemberInfo(Member member) {

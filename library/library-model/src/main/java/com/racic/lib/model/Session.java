@@ -6,31 +6,32 @@ import java.util.Date;
 
 @Entity(name="Session")
 public class Session {
+    //session est context
 
     @Id
     @GeneratedValue
     @Column
     private Integer idSession;
-    @OneToOne
-    private Member member;
+
+
+    private Member member; //?
 
     @Column
-    private Date sessionTimeIN; // have to reformat with timestamp
+    private Date sessionTimeIN; // have to reformat with timestamp DELETE
 
     @Column
-    private Date sessionTimeOut; //timeoutnow + 30 minutes have to reformat with timestamp
-    @Column
-    private String statusSession;
+    private Timestamp sessionTimeOut; // inactif timeoutnow + 30 minutes have to reformat with timestamp
+
 
     //TODO list all attributes for Session and add getters setters
 
     public Session() {
     }
 
-    public Session(Member member, Date sessionTimeOut,Date sessionTimeIN, String statusSession) {
+    public Session(Member member, Timestamp sessionTimeOut,Date sessionTimeIN) {
         this.member = member;
         this.sessionTimeOut = sessionTimeOut;
-        this.statusSession=statusSession;
+
         this.sessionTimeIN = sessionTimeIN;
     }
 
@@ -46,7 +47,7 @@ public class Session {
         return sessionTimeOut;
     }
 
-    public void setSessionTimeOut(Date sessionTimeOut) {
+    public void setSessionTimeOut(Timestamp sessionTimeOut) {
         this.sessionTimeOut = sessionTimeOut;
     }
 
@@ -56,14 +57,6 @@ public class Session {
 
     public void setIdSession(Integer idSession) {
         this.idSession = idSession;
-    }
-
-    public String getStatusSession() {
-        return statusSession;
-    }
-
-    public void setStatusSession(String statusSession) {
-        this.statusSession = statusSession;
     }
 
     public Date getSessionTimeIN() {
