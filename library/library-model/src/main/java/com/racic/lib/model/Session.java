@@ -15,8 +15,10 @@ public class Session {
     private Member member;
 
     @Column
-    private Timestamp sessionTimeOut; //now + 30 minutes
+    private Date sessionTimeIN; // have to reformat with timestamp
 
+    @Column
+    private Date sessionTimeOut; //timeoutnow + 30 minutes have to reformat with timestamp
     @Column
     private String statusSession;
 
@@ -25,10 +27,11 @@ public class Session {
     public Session() {
     }
 
-    public Session(Member member, Timestamp sessionTimeOut, String statusSession) {
+    public Session(Member member, Date sessionTimeOut,Date sessionTimeIN, String statusSession) {
         this.member = member;
         this.sessionTimeOut = sessionTimeOut;
         this.statusSession=statusSession;
+        this.sessionTimeIN = sessionTimeIN;
     }
 
     public Member getMember() {
@@ -39,11 +42,11 @@ public class Session {
         this.member = member;
     }
 
-    public Timestamp getSessionTimeOut() {
+    public Date getSessionTimeOut() {
         return sessionTimeOut;
     }
 
-    public void setSessionTimeOut(Timestamp sessionTimeOut) {
+    public void setSessionTimeOut(Date sessionTimeOut) {
         this.sessionTimeOut = sessionTimeOut;
     }
 
@@ -61,5 +64,13 @@ public class Session {
 
     public void setStatusSession(String statusSession) {
         this.statusSession = statusSession;
+    }
+
+    public Date getSessionTimeIN() {
+        return sessionTimeIN;
+    }
+
+    public void setSessionTimeIN(Date sessionTimeIN) {
+        this.sessionTimeIN = sessionTimeIN;
     }
 }
