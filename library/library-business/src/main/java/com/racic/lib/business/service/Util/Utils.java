@@ -17,6 +17,18 @@ public class Utils {
         }
 
     }
+    public enum SessionStatusEnum{
+        VALID("valid"),
+        INVALID("invalid");
+        String value;
+        //constructor of enum
+        SessionStatusEnum(String value){
+            this.value = value;
+        }
+        public String getValue() {
+            return this.value;
+        }
 
+    }
 
 }
