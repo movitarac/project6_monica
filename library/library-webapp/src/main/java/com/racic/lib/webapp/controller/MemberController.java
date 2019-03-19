@@ -34,6 +34,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value="/profile", method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request, com.racic.lib.client.Member member){
+		//String referer = request.getHeader("Referer");
 
 
 		boolean result;
@@ -52,14 +53,17 @@ public class MemberController {
 			result = memberWs.isValidUser(username,password);
 
 			if (result == true) {
+
 				modelAndView = new ModelAndView("member/profile");
-				com.racic.lib.client.Member memberConnected = memberWs.findByUsernameAndPassword(username,password);
+				//modelAndView = new ModelAndView("redirect:" + referer);
+				com.racic.lib.client.Member memberConnected = memberWs.findByUsernameAndPassword(username, password);
 				request.getSession().setAttribute("connected", true);
-				request.getSession().setAttribute("memberConnected",memberConnected);
+				request.getSession().setAttribute("memberConnected", memberConnected);
 				com.racic.lib.client.Member loggedInMember = (com.racic.lib.client.Member) request.getSession().getAttribute("memberConnected");
-				modelAndView.addObject("memberConnected",memberConnected);
+				modelAndView.addObject("memberConnected", memberConnected);
 
 				System.out.println(loggedInMember.getFirstName());
+
 			} else {
 				modelAndView = new ModelAndView("member/login");
 				modelAndView.addObject("msg","Wrong username and or password");
@@ -111,8 +115,6 @@ public class MemberController {
 			loggedIn.setFirstName(request.getParameter("firstname"));
 			loggedIn.setLastName(request.getParameter("lastname"));
 			loggedIn.setAddress(request.getParameter("address"));
-			loggedIn.setUsername(request.getParameter("username"));
-
 			memberWs.updateMember(loggedIn);
 			mv.addObject("memberConnected", loggedIn);
 			mv.setViewName("member/profile");
