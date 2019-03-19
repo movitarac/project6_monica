@@ -10,7 +10,13 @@ public interface SessionService {
 
     Session findSessionById(Integer sessionId);
 
-    Session findSessionByMember(Member member);
+
+    //methode security
+    //private -- not exposed as webmethod
+    boolean checkSession(Integer idSession);
+
+    //methode creation of session
+    boolean createSession(Member member);
 
     boolean determineSession(Member member);
 }

@@ -2,7 +2,7 @@ package com.racic.lib.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 @Entity(name="Session")
 public class Session {
@@ -13,37 +13,32 @@ public class Session {
     @Column
     private Integer idSession;
 
-
-    private Member member; //?
-
     @Column
-    private Date sessionTimeIN; // have to reformat with timestamp DELETE
+    private Timestamp sessionStart; // have to reformat with timestamp DELETE
 
     @Column
     private Timestamp sessionTimeOut; // inactif timeoutnow + 30 minutes have to reformat with timestamp
 
+   @OneToOne
+    private Member member;
 
     //TODO list all attributes for Session and add getters setters
 
     public Session() {
     }
 
-    public Session(Member member, Timestamp sessionTimeOut,Date sessionTimeIN) {
-        this.member = member;
+    public Session(Timestamp sessionStart, Timestamp sessionTimeOut) {
+        this.sessionStart = sessionStart;
         this.sessionTimeOut = sessionTimeOut;
-
-        this.sessionTimeIN = sessionTimeIN;
     }
 
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
+    public Session(Timestamp sessionStart, Timestamp sessionTimeOut, Member member) {
+        this.sessionStart = sessionStart;
+        this.sessionTimeOut = sessionTimeOut;
         this.member = member;
     }
 
-    public Date getSessionTimeOut() {
+    public Timestamp getSessionTimeOut() {
         return sessionTimeOut;
     }
 
@@ -59,11 +54,20 @@ public class Session {
         this.idSession = idSession;
     }
 
-    public Date getSessionTimeIN() {
-        return sessionTimeIN;
+    public Timestamp getSessionStart() {
+        return sessionStart;
     }
 
-    public void setSessionTimeIN(Date sessionTimeIN) {
-        this.sessionTimeIN = sessionTimeIN;
+    public void setSessionStart(Timestamp sessionStart) {
+        this.sessionStart = sessionStart;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 }
+

@@ -18,20 +18,24 @@ public class Member extends User{
     private String address;
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Borrowing> borrowing;
+
 	
-	
+
+
+
     public Member(String firstName, String lastName, String email,
-			String address, List<Borrowing> borrowing) {
-		super();
+                  String address, List<Borrowing> borrowing) {
+        super();
 
-		this.firstName = firstName;
-		this.lastName = lastName;
 
-		this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
 
-		this.address = address;
-		this.borrowing = borrowing;
-	}
+        this.email = email;
+
+        this.address = address;
+        this.borrowing = borrowing;
+    }
 
 	//default constructor
 

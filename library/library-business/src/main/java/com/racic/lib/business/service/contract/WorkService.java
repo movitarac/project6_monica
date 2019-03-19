@@ -18,4 +18,7 @@ public interface WorkService {
     boolean isValidWorkByAuthor(String author);
 
 
+    List<Work> findWork(String author, String title);
+
+    boolean isValidWork(String author, String title);
 }
