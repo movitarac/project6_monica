@@ -11,5 +11,7 @@
         <%@include file="../work/workssearch.jsp"%>
         <br>
         <%@include file="../work/workssearchtitle.jsp"%>
+        <br>
+        <%@include file="../work/searchwork.jsp"%>
     </p>
     </body>

@@ -3,7 +3,7 @@
 <body class="profile">
 <%@ include file="../_include/header.jsp" %>
 <main role="main" class="inner cover">
-    <%--<form:form method="POST" action="${pageContext.request.contextPath}/borrowinglist">--%>
+
 
         <h1 class="persoinfo">Your personal information</h1>
         <p class="lead">
@@ -15,8 +15,6 @@
             <a class="badge badge-info" href="${pageContext.request.contextPath}/update">edit profile</a>
         </p>
 
-
-<%--</form:form>--%>
 </main>
 
 </body>

@@ -11,6 +11,7 @@
         <li id="bookdetail"> Author: ${work.author} <br>
         Publication Year : ${work.publicationYear}<br>
         Description : ${work.bookDescription}<br>
+        Available copies : ${work.copiesAvailable}    <br>
 
        <a href="${pageContext.request.contextPath}/borrow/${work.worksId}" class="badge badge-secondary">Borrow </a>
 
