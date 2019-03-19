@@ -1,15 +1,9 @@
 package com.racic.lib.webapp.controller;
 
-
 import com.racic.lib.client.*;
-
 import org.springframework.stereotype.Controller;
-
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -35,8 +29,7 @@ public class MemberController {
 	@RequestMapping(value="/profile", method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request, com.racic.lib.client.Member member){
 		//String referer = request.getHeader("Referer");
-
-
+		
 		boolean result;
 		ModelAndView modelAndView = null;
 		String username=member.getUsername();
@@ -124,7 +117,4 @@ public class MemberController {
 		}
 		return mv;
 	}
-
-
-
 }
