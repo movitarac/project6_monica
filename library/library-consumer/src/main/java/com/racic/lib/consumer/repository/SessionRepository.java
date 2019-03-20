@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface SessionRepository extends CrudRepository<Session,Integer> {
 
-    Session findByMember(Member member);
-    List<Session> findAll();
 
+    List<Session> findAll();
+    List<Session> findSessionsByMember (Member member);
 
 
 }

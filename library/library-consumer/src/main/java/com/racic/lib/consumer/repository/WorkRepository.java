@@ -16,8 +16,10 @@ public interface WorkRepository extends CrudRepository <Work, Integer>{
 
 	List<Work> findWorksByAuthorIsContainingIgnoreCase(String author);
 
-	//List<Work> findWorksByTitleIsContaining(String title);
+	List<Work> findByAuthorIsContainingAndTitleIsContaining(String author, String title);
 	List<Work> findWorksByTitleIsContainingIgnoreCase(String title);
+
+
 
 	Work save(Work work);
 

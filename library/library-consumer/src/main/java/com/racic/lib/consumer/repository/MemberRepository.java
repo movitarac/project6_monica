@@ -1,5 +1,6 @@
 package com.racic.lib.consumer.repository;
 
+import com.racic.lib.model.Borrowing;
 import com.racic.lib.model.Member;
 
 import org.springframework.data.repository.CrudRepository;
@@ -15,6 +16,7 @@ public interface MemberRepository extends CrudRepository <Member,Integer>{
 	List<Member> findAll();
 
 	Member findByUsernameAndPassword(String username, String password);
+
 
 
 }
