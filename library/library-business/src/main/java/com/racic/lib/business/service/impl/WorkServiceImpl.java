@@ -35,12 +35,14 @@ public class WorkServiceImpl implements WorkService {
 
     @Override
     public List<Work> findWorksByTitleContain(String title) {
+        //return workRepository.findWorksByTitleIsContainingIgnoreCase(title);
         return workRepository.findWorksByTitleIsContainingIgnoreCase(title);
     }
 
     @Override
     public boolean isValidWorkByTitle(String title) {
         boolean beReturned;
+        //List<Work> workListByTitle = workRepository.findWorksByTitleIsContainingIgnoreCase(title);
         List<Work> workListByTitle = workRepository.findWorksByTitleIsContainingIgnoreCase(title);
         if (workListByTitle.size()>=1) {
             beReturned = true;
@@ -63,5 +65,22 @@ public class WorkServiceImpl implements WorkService {
         return toReturn;
     }
 
+    @Override
+    public List<Work> findWork(String author, String title) {
+
+        return workRepository.findByAuthorIsContainingAndTitleIsContaining(author,title);
+    }
+
+    @Override
+    public boolean isValidWork(String author, String title) {
+        boolean beReturned;
+        List<Work> workFound = workRepository.findByAuthorIsContainingAndTitleIsContaining(author,title);
+        if (workFound.size()>=1) {
+            beReturned = true;
+        } else {
+            beReturned = false;
+        }
+        return beReturned;
+    }
 
 }

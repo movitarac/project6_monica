@@ -1,10 +1,12 @@
 package com.racic.lib.business.service.impl;
 
 import com.racic.lib.business.service.contract.MemberService;
+import com.racic.lib.business.service.contract.SessionService;
 import com.racic.lib.consumer.repository.MemberRepository;
 import com.racic.lib.consumer.repository.UserRepository;
 import com.racic.lib.model.Borrowing;
 import com.racic.lib.model.Member;
+import com.racic.lib.model.Session;
 import com.racic.lib.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +22,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	UserRepository userRepository;
- 
+
+	@Autowired
+	SessionService sessionService;
 
     public List<Member> findAll() {
     	return memberRepository.findAll();
@@ -46,44 +50,24 @@ public class MemberServiceImpl implements MemberService {
     	boolean toReturn;
     	if (validMember !=null) {
     		toReturn = true;
-    		//create new Session
-
+			sessionService.createSession(validMember);
 		} else{
     		toReturn = false;
 		}
     	return toReturn;
 	}
 
+
+
+
+
 	//private ne met pas dans le contract no override
 
 	@Override
 	public void updateMemberInfo(Member member) {
-		memberRepository.save(member);
+
+    	memberRepository.save(member);
 	}
 
-
-	/*
-	@Override
-	public String addUser(String username, String password) {
-    	User userToBeAdded = new User();
-    	userToBeAdded.setUsername(username);
-    	userToBeAdded.setPassword(password);
-    	userRepository.save(userToBeAdded);
-		return "user with " + userToBeAdded.getUsername() + " is added!";
-	}
-
-
-	@Override
-	public String addMember(String firstname, String lastname,
-							String email, String address) {
-		Member memberToBeAdded = new Member();
-		memberToBeAdded.setFirstName(firstname);
-		memberToBeAdded.setLastName(lastname);
-		memberToBeAdded.setAddress(address);
-		memberToBeAdded.setEmail(email);
-    	memberRepository.save(memberToBeAdded);
-		return memberToBeAdded.getFirstName() + " one of our loyal member. Welcome!";
-	}
-*/
 
 }

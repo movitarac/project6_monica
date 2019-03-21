@@ -3,7 +3,10 @@ package com.racic.lib.business.service.impl;
 import com.racic.lib.business.service.Util.Utils;
 import com.racic.lib.business.service.contract.BookService;
 import com.racic.lib.business.service.contract.BorrowingService;
+import com.racic.lib.business.service.contract.SessionService;
+import com.racic.lib.business.service.exception.BorrowFunctionalException;
 import com.racic.lib.business.service.exception.ExtendFunctionnalException;
+import com.racic.lib.business.service.exception.SessionException;
 import com.racic.lib.consumer.repository.BookRepository;
 import com.racic.lib.consumer.repository.BorrowingRepository;
 import com.racic.lib.consumer.repository.WorkRepository;
@@ -22,7 +25,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
-
 @Service("borrowingService")
 public class BorrowingServiceImpl implements BorrowingService {
 
@@ -35,6 +37,8 @@ public class BorrowingServiceImpl implements BorrowingService {
     WorkRepository workRepository;
     @Autowired
     BookService bookService;
+    @Autowired
+    SessionService sessionService;
 
     @Override
     public boolean returnBorrowing(Integer borrowingid, Member member) {
@@ -42,29 +46,46 @@ public class BorrowingServiceImpl implements BorrowingService {
 
         Borrowing borrowingToBeReturned = borrowingRepository.findById(borrowingid).get();
 
-        if (borrowingToBeReturned.getStatus().equals(Utils.BorrowStatusEnum.ONGOING.getValue())
-                || borrowingToBeReturned.getStatus().equals(Utils.BorrowStatusEnum.EXTENDED.getValue())) {
-            //change the status
-            borrowingToBeReturned.setStatus(Utils.BorrowStatusEnum.RETURNED.getValue());
-            Book bookToBeReturned = borrowingToBeReturned.getBook();
+        boolean checkSession = sessionService.findAndCheckSession(member);
 
-            //modify the book availability and the borrowing id
-            bookToBeReturned.setAvailable(true);
-            bookToBeReturned.setBorrowing(null);
+        /**
+         * if a session  is still valid (not false)
+         * set new session time out
+         */
 
-            //save the modification for book and borrowing
-            bookRepository.save(bookToBeReturned);
-            borrowingRepository.save(borrowingToBeReturned);
+        if (checkSession = true) {
 
-            //update the copies available
-            Work bookFromWorkToBeReturned = bookToBeReturned.getWork();
-            List<Book> availableBooks = bookService.findAvailableBooksFromWork(bookFromWorkToBeReturned.getWorksId());
+            if (borrowingToBeReturned.getStatus().equals(Utils.BorrowStatusEnum.ONGOING.getValue())
+                    || borrowingToBeReturned.getStatus().equals(Utils.BorrowStatusEnum.EXTENDED.getValue())) {
+                //change the status
+                borrowingToBeReturned.setStatus(Utils.BorrowStatusEnum.RETURNED.getValue());
+                Book bookToBeReturned = borrowingToBeReturned.getBook();
 
-            bookFromWorkToBeReturned.setCopiesAvailable(availableBooks.size());
-            workRepository.save(bookFromWorkToBeReturned);
+                //modify the book availability and the borrowing id
+                bookToBeReturned.setAvailable(true);
+                bookToBeReturned.setBorrowing(null);
+
+                //save the modification for book and borrowing
+                bookRepository.save(bookToBeReturned);
+                borrowingRepository.save(borrowingToBeReturned);
+
+                //update the copies available
+                Work bookFromWorkToBeReturned = bookToBeReturned.getWork();
+                List<Book> availableBooks = bookService.findAvailableBooksFromWork(bookFromWorkToBeReturned.getWorksId());
+
+                bookFromWorkToBeReturned.setCopiesAvailable(availableBooks.size());
+                workRepository.save(bookFromWorkToBeReturned);
 
 
-            System.out.println(bookToBeReturned.getBookId() + " is being returned");
+                System.out.println(bookToBeReturned.getBookId() + " is being returned");
+
+            } else {
+                try {
+                    throw new SessionException("Session is not valid");
+                } catch (SessionException e) {
+                    e.printStackTrace();
+                }
+            }
             returnOk = true;
         } else {
 
@@ -89,38 +110,66 @@ public class BorrowingServiceImpl implements BorrowingService {
         Date returnDate = borrowingtoBeExtended.getReturnDate();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(returnDate);
-        calendar.add(Calendar.WEEK_OF_MONTH,4);
+        calendar.add(Calendar.WEEK_OF_MONTH, 4);
         returnDate = calendar.getTime();
         Date today = new Date();
 
-        if (!borrowingtoBeExtended.isExtended() && today.before(borrowingtoBeExtended.getReturnDate())) {
 
-            System.out.println("new date : " + returnDate + " we are in method extend borrowing");
+        boolean checkSession = sessionService.findAndCheckSession(member);
 
-            borrowingtoBeExtended.setReturnDate(returnDate);
-            borrowingtoBeExtended.setStatus(Utils.BorrowStatusEnum.EXTENDED.getValue());
-            borrowingtoBeExtended.setExtended(true);
-            borrowingRepository.save(borrowingtoBeExtended);
+        /**
+         * if a session  is still valid (not false)
+         * set new session time out
+         */
 
-            toreturn = true;
-        } else if (borrowingtoBeExtended.isExtended()){
-            try {
-                throw new ExtendFunctionnalException("the book is already extended, the member cannot extend twice");
-            } catch (ExtendFunctionnalException e) {
-                e.printStackTrace();
+        if (checkSession = true) {
+
+            /**
+             * if a booksavailable list isn't null
+             * set new borrowing
+             */
+            System.out.println("session is valid = " + checkSession);
+
+            if (!borrowingtoBeExtended.isExtended() && today.before(borrowingtoBeExtended.getReturnDate())) {
+
+                System.out.println("new date : " + returnDate + " we are in method extend borrowing");
+
+                borrowingtoBeExtended.setReturnDate(returnDate);
+                borrowingtoBeExtended.setStatus(Utils.BorrowStatusEnum.EXTENDED.getValue());
+                borrowingtoBeExtended.setExtended(true);
+                borrowingRepository.save(borrowingtoBeExtended);
+
+                toreturn = true;
+            } else if (borrowingtoBeExtended.isExtended()) {
+                try {
+                    throw new ExtendFunctionnalException("the book is already extended, the member cannot extend twice");
+                } catch (ExtendFunctionnalException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("cannot extend the borrowing because it has been already extended- an exception is thrown");
+                toreturn = false;
+            } else {
+                try {
+                    throw new ExtendFunctionnalException("Cannot extend the borrowing, the loan period is already passed");
+                } catch (ExtendFunctionnalException e) {
+                    e.printStackTrace();
+                }
+                toreturn = false;
+                System.out.println("cannot extend the borrowing because of the loan period- an exception is thrown");
             }
-            System.out.println("cannot extend the borrowing because it has been already extended- an exception is thrown");
-            toreturn = false;
+            System.out.println(returnDate + " we are in method extend borrowing");
+
+
         } else {
             try {
-                throw  new ExtendFunctionnalException("Cannot extend the borrowing, the loan period is already passed");
-            } catch (ExtendFunctionnalException e) {
+                throw new SessionException("Session is not valid");
+            } catch (SessionException e) {
                 e.printStackTrace();
             }
-            toreturn = false;
-            System.out.println("cannot extend the borrowing because of the loan period- an exception is thrown");
         }
-        System.out.println(returnDate + " we are in method extend borrowing");
+
+
+        toreturn = true;
 
         return toreturn;
     }
@@ -151,69 +200,107 @@ public class BorrowingServiceImpl implements BorrowingService {
         List<Book> booksAvailable = bookService.findAvailableBooksFromWork(worksId);
 
         Borrowing borrowToBeAdded = new Borrowing();
-
+        boolean checkSession = sessionService.findAndCheckSession(member);
         /**
-         * if a booksavailable list isn't null
-         * set new borrowing
+         * if a session  is still valid (not false)
+         * set new session time out
          */
-        if (booksAvailable.size() > 0) {
-            borrowToBeAdded.setMember(member);
 
-            //set Issue Date
-            Date issueDate=new Date();
+        if (checkSession = true) {
 
-            borrowToBeAdded.setIssueDate(issueDate);
-            //calculate the return date
-           Date returnDate = issueDate;
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(returnDate);
-            calendar.add(Calendar.WEEK_OF_MONTH,4);
-            returnDate = calendar.getTime();
+            /**
+             * if a booksavailable list isn't null
+             * set new borrowing
+             */
+            if (booksAvailable.size() > 0) {
+                borrowToBeAdded.setMember(member);
 
-           borrowToBeAdded.setReturnDate(returnDate);
+                //set Issue Date
+                Date issueDate = new Date();
 
-            borrowToBeAdded.setStatus(Utils.BorrowStatusEnum.ONGOING.getValue());
-            borrowToBeAdded.setExtended(false);
+                borrowToBeAdded.setIssueDate(issueDate);
+                //calculate the return date
+                Date returnDate = issueDate;
 
-            //the latest book on the available list will be borrowed
-            Book bookToBeAdded = booksAvailable.get(booksAvailable.size() - 1);
-            borrowToBeAdded.setBook(bookToBeAdded);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(returnDate);
+                calendar.add(Calendar.WEEK_OF_MONTH, 4);
+                returnDate = calendar.getTime();
 
-            //save the borrowing
-            borrowingRepository.save(borrowToBeAdded);
+                borrowToBeAdded.setReturnDate(returnDate);
 
-            //change the availability of this book and the borrowing
-            bookToBeAdded.setAvailable(false);
-            bookToBeAdded.setBorrowing(borrowToBeAdded);
+                borrowToBeAdded.setStatus(Utils.BorrowStatusEnum.ONGOING.getValue());
+                borrowToBeAdded.setExtended(false);
 
-            System.out.println(bookToBeAdded.getBookId() + " is "
-                    + bookToBeAdded.isAvailable());
-            //update and save the modification for book in database
-            bookRepository.save(bookToBeAdded);
+                //the latest book on the available list will be borrowed
+                Book bookToBeAdded = booksAvailable.get(booksAvailable.size() - 1);
+                borrowToBeAdded.setBook(bookToBeAdded);
 
-            //remove the borrowed book from the list of available books
-            booksAvailable.remove(bookToBeAdded);
+                //save the borrowing
+                borrowingRepository.save(borrowToBeAdded);
 
-            //update the total of available copy for the related work
-            workWithToBeBorrowed.setCopiesAvailable(booksAvailable.size());
+                //change the availability of this book and the borrowing
+                bookToBeAdded.setAvailable(false);
+                bookToBeAdded.setBorrowing(borrowToBeAdded);
 
-            //save the modification
-            workRepository.save(workWithToBeBorrowed);
+                System.out.println(bookToBeAdded.getBookId() + " is "
+                        + bookToBeAdded.isAvailable());
+                //update and save the modification for book in database
+                bookRepository.save(bookToBeAdded);
 
-            System.out.println("book " + bookToBeAdded.getBookId() + " is succesfully borrowed by "
-                    + member.getFirstName());
+                //remove the borrowed book from the list of available books
+                booksAvailable.remove(bookToBeAdded);
+
+                //update the total of available copy for the related work
+                workWithToBeBorrowed.setCopiesAvailable(booksAvailable.size());
+
+                //save the modification
+                workRepository.save(workWithToBeBorrowed);
+
+                System.out.println("book " + bookToBeAdded.getBookId() + " is succesfully borrowed by "
+                        + member.getFirstName());
+            } else {
+                try {
+                    throw new BorrowFunctionalException("Problem! Cannot borrow " + workWithToBeBorrowed.getTitle() + "!");
+                } catch (BorrowFunctionalException e) {
+                    e.printStackTrace();
+                    System.out.println("problem occured");
+                }
+
+            }
         } else {
-            System.out.println("problem occured");
+            try {
+                throw new SessionException("Session is not valid");
+            } catch (SessionException e) {
+                e.printStackTrace();
+            }
         }
+
+
         toReturn = true;
         return toReturn;
     }
 
-
     @Override
     public List<Borrowing> findByMember(Member member) {
-        return borrowingRepository.findByMember(member);
+
+        boolean sessionValid = sessionService.findAndCheckSession(member);
+
+        List<Borrowing> borrowingList = new ArrayList<>();
+        if (sessionValid = true) {
+            borrowingList = borrowingRepository.findByMember(member);
+            System.out.println("session is valid = " + sessionValid);
+
+        } else {
+            try {
+                throw new SessionException("Session is not valid");
+            } catch (SessionException e) {
+                e.printStackTrace();
+            }
+            borrowingList = null;
+        }
+        return borrowingList;
     }
 
     @Override
@@ -280,11 +367,11 @@ public class BorrowingServiceImpl implements BorrowingService {
                 }
 
             }
-        }else {
+        } else {
             System.out.println("PROBLEM!!!!");
         }
         sendOk = true;
-return sendOk;
+        return sendOk;
     }
 
 

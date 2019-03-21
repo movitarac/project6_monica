@@ -56,7 +56,7 @@ public class SessionServiceImpl implements SessionService {
         int addtime = 60;
 
 
-        if (member != null) {
+        if (!sessionsFoundForAMember.isEmpty()) {
        //TODO
             for (Session s : sessionsFoundForAMember) {
                 timeOut = s.getSessionTimeOut() ;
@@ -109,6 +109,21 @@ public class SessionServiceImpl implements SessionService {
     @Override
     public List<Session> findSessionsByMember(Member member) {
         return sessionRepository.findSessionsByMember(member);
+    }
+
+
+   // public Session
+
+
+    @Override
+    public Session findFirstByOrderByIdSession(){
+
+       List<Session> sessionList = sessionRepository.findAll();
+        Session session = null;
+
+        session = sessionList.get(sessionList.size()-1);
+
+       return session;
     }
 
 
