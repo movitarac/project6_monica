@@ -42,22 +42,23 @@ public class MemberServiceImpl implements MemberService {
     return memberRepository.findByUsernameAndPassword(username,password);
 	}
 
+
+
 	@Override
-	public boolean isValidUser(String userName, String passWord) {
+	public Integer isValidUser(String userName, String passWord) {
 
-    	Member validMember = memberRepository.findByUsernameAndPassword(userName, passWord);
+    	Integer sessionToBeReturned = 0;
+		Member validMember = memberRepository.findByUsernameAndPassword(userName, passWord);
 
-    	boolean toReturn;
-    	if (validMember !=null) {
-    		toReturn = true;
-			sessionService.createSession(validMember);
+		Integer idSession;
+		if (validMember !=null) {
+			idSession = sessionService.createSession(validMember);
+
 		} else{
-    		toReturn = false;
+			idSession = 0;
 		}
-    	return toReturn;
+		return idSession;
 	}
-
-
 
 
 

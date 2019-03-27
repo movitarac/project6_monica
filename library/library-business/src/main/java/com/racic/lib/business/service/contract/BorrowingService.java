@@ -6,6 +6,7 @@ import com.racic.lib.model.Member;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface BorrowingService {
 
@@ -13,11 +14,17 @@ public interface BorrowingService {
 
     boolean borrowBook(Integer worksId, Member member);
 
+    boolean borrowBook(Integer worksId, Member member, Integer sessionId);
+
     boolean returnBorrowing(Integer borrowingid, Member member);
 
-    List<Borrowing> getNotReturnedBorrowing(Date today);
+    boolean returnBorrowing(Integer borrowingid, Member member, Integer sessionId);
 
     boolean extendBorrowing (Integer borrowingId, Member member);
+
+    boolean extendBorrowing (Integer borrowingId, Member member, Integer sessionId);
+
+    List<Borrowing> getNotReturnedBorrowing(Date today);
 
     List<Borrowing> findByMember(Member member);
 
