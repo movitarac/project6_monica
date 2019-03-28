@@ -23,14 +23,14 @@ public abstract class SecurityService {
     private boolean checkSession (Integer sessionId) {
         boolean toreturn;
 
-           Session foundSession;
-            Timestamp timeNow = new Timestamp(System.currentTimeMillis());
-            Timestamp timeOut;
-            Timestamp newTimeOut;
-            Session sessionsFound =sessionRepository.findById(sessionId).get();
 
-            int addtime = 60;
+        Session foundSession;
+        Timestamp timeNow = new Timestamp(System.currentTimeMillis());
+        Timestamp timeOut;
+        Timestamp newTimeOut;
+        Session sessionsFound =sessionRepository.findById(sessionId).get();
 
+        int addtime = 60;
 
             if (sessionsFound !=null) {
                 //TODO

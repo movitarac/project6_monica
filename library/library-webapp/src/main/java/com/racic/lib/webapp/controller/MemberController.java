@@ -2,9 +2,11 @@ package com.racic.lib.webapp.controller;
 
 import com.racic.lib.client.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @Controller
@@ -29,11 +31,12 @@ public class MemberController {
 	@RequestMapping(value="/profile", method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request, com.racic.lib.client.Member member){
 		//String referer = request.getHeader("Referer");
-		
-		boolean result;
+
+		Integer result;
 		ModelAndView modelAndView = null;
 		String username=member.getUsername();
 		String password=member.getPassword();
+
 
 
 		if(member !=null && username !=null & password !=null) {
@@ -42,20 +45,28 @@ public class MemberController {
 			MemberWeb memberWeb = new MemberWeb();
 			MemberWs memberWs = memberWeb.getMemberWsPort();
 
-			//call the webmethod
-			result = memberWs.isValidUser(username,password);
+			/*
+			SessionWeb sessionWeb = new SessionWeb();
+			SessionWs sessionWs = sessionWeb.getSessionWsPort();
+			*/
 
-			if (result == true) {
+			//call the webmethod
+			//and creation of a new session
+			result = memberWs.isValidUser(username,password);
+			//boolean validsession = sessionWs.checkSession(member);
+			if (result !=null) {
 
 				modelAndView = new ModelAndView("member/profile");
 				//modelAndView = new ModelAndView("redirect:" + referer);
 				com.racic.lib.client.Member memberConnected = memberWs.findByUsernameAndPassword(username, password);
 				request.getSession().setAttribute("connected", true);
 				request.getSession().setAttribute("memberConnected", memberConnected);
-				com.racic.lib.client.Member loggedInMember = (com.racic.lib.client.Member) request.getSession().getAttribute("memberConnected");
+				//request.getSession().setAttribute("validsession",validsession);
+				//com.racic.lib.client.Member loggedInMember = (com.racic.lib.client.Member) request.getSession().getAttribute("memberConnected");
 				modelAndView.addObject("memberConnected", memberConnected);
 
-				System.out.println(loggedInMember.getFirstName());
+
+				System.out.println(memberConnected.getFirstName());
 
 			} else {
 				modelAndView = new ModelAndView("member/login");
@@ -87,7 +98,9 @@ public class MemberController {
 		System.out.println("before logged out " + m1.getFirstName());
 		ModelAndView modelAndView = new ModelAndView("member/login");
 		modelAndView.addObject("msg","You are successfully logged out!");
+
 		request.getSession().invalidate();
+
 		return modelAndView;
 	}
 
@@ -117,4 +130,6 @@ public class MemberController {
 		}
 		return mv;
 	}
+
+
 }

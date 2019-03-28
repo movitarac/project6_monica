@@ -25,13 +25,23 @@ public class BorrowingWs{
     BorrowingService borrowingService;
 
     @WebMethod
+    public boolean borrowBook(Integer worksId, Member member) {
+        return borrowingService.borrowBook(worksId, member);
+    }
+
+    @WebMethod
+    public boolean borrowBookWithSession(Integer worksId, Member member,Integer sessionId) {
+        return borrowingService.borrowBook(worksId, member,sessionId);
+    }
+
+    @WebMethod
     public boolean returnBorrowing(Integer borrowingid, Member member) {
         return borrowingService.returnBorrowing(borrowingid, member);
     }
 
     @WebMethod
-    public List<Borrowing> getNotReturnedBorrowing(Date today) {
-        return borrowingService.getNotReturnedBorrowing(today);
+    public boolean returnBorrowingWithSession(Integer borrowingid, Member member,Integer sessionId) {
+        return borrowingService.returnBorrowing(borrowingid, member, sessionId);
     }
 
     @WebMethod
@@ -40,13 +50,18 @@ public class BorrowingWs{
     }
 
     @WebMethod
+    public boolean extendBorrowingWithSession(Integer borrowingId, Member member,Integer sessionId) {
+        return borrowingService.extendBorrowing(borrowingId, member,sessionId);
+    }
+
+    @WebMethod
     public boolean verifyBoksListAvailableSize(Integer worksid) {
         return borrowingService.verifyBoksListAvailableSize(worksid);
     }
 
     @WebMethod
-    public boolean borrowBook(Integer worksId, Member member) {
-        return borrowingService.borrowBook(worksId, member);
+    public List<Borrowing> getNotReturnedBorrowing(Date today) {
+        return borrowingService.getNotReturnedBorrowing(today);
     }
 
     @WebMethod
