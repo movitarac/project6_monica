@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 @Service
-public class SecurityService {
+public abstract class SecurityService {
 
     @Autowired
     SessionRepository sessionRepository;
@@ -20,7 +20,7 @@ public class SecurityService {
     //TODO problem with private method!!!! and during repository call
     //methode security
     //private -- not exposed as webmethod
-    public boolean checkSession (Integer sessionId) {
+    private boolean checkSession (Integer sessionId) {
         boolean toreturn;
 
            Session foundSession;
