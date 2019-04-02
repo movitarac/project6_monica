@@ -123,18 +123,6 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="isValidWorkByTitle">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="isValidWorkByTitleResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="findWorksByAuthorContain">
     <xs:sequence>
       <xs:element name="arg0" type="xs:string" minOccurs="0"/>
@@ -144,6 +132,18 @@
   <xs:complexType name="findWorksByAuthorContainResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:work" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="isValidWorkByTitle">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="isValidWorkByTitleResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
 

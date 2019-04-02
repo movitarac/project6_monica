@@ -12,11 +12,11 @@
   <message name="initResponse">
     <part name="parameters" element="tns:initResponse"/>
   </message>
-  <message name="borrowBookWithSession">
-    <part name="parameters" element="tns:borrowBookWithSession"/>
+  <message name="borrowBook">
+    <part name="parameters" element="tns:borrowBook"/>
   </message>
-  <message name="borrowBookWithSessionResponse">
-    <part name="parameters" element="tns:borrowBookWithSessionResponse"/>
+  <message name="borrowBookResponse">
+    <part name="parameters" element="tns:borrowBookResponse"/>
   </message>
   <message name="findByBorrowingId">
     <part name="parameters" element="tns:findByBorrowingId"/>
@@ -24,17 +24,17 @@
   <message name="findByBorrowingIdResponse">
     <part name="parameters" element="tns:findByBorrowingIdResponse"/>
   </message>
+  <message name="extendBorrowingWithSession">
+    <part name="parameters" element="tns:extendBorrowingWithSession"/>
+  </message>
+  <message name="extendBorrowingWithSessionResponse">
+    <part name="parameters" element="tns:extendBorrowingWithSessionResponse"/>
+  </message>
   <message name="returnBorrowingWithSession">
     <part name="parameters" element="tns:returnBorrowingWithSession"/>
   </message>
   <message name="returnBorrowingWithSessionResponse">
     <part name="parameters" element="tns:returnBorrowingWithSessionResponse"/>
-  </message>
-  <message name="getNotReturnedBorrowing">
-    <part name="parameters" element="tns:getNotReturnedBorrowing"/>
-  </message>
-  <message name="getNotReturnedBorrowingResponse">
-    <part name="parameters" element="tns:getNotReturnedBorrowingResponse"/>
   </message>
   <message name="verifyBoksListAvailableSize">
     <part name="parameters" element="tns:verifyBoksListAvailableSize"/>
@@ -42,17 +42,23 @@
   <message name="verifyBoksListAvailableSizeResponse">
     <part name="parameters" element="tns:verifyBoksListAvailableSizeResponse"/>
   </message>
-  <message name="extendBorrowingWithSession">
-    <part name="parameters" element="tns:extendBorrowingWithSession"/>
+  <message name="borrowBookWithSession">
+    <part name="parameters" element="tns:borrowBookWithSession"/>
   </message>
-  <message name="extendBorrowingWithSessionResponse">
-    <part name="parameters" element="tns:extendBorrowingWithSessionResponse"/>
+  <message name="borrowBookWithSessionResponse">
+    <part name="parameters" element="tns:borrowBookWithSessionResponse"/>
   </message>
-  <message name="findByMember">
-    <part name="parameters" element="tns:findByMember"/>
+  <message name="getNotReturnedBorrowing">
+    <part name="parameters" element="tns:getNotReturnedBorrowing"/>
   </message>
-  <message name="findByMemberResponse">
-    <part name="parameters" element="tns:findByMemberResponse"/>
+  <message name="getNotReturnedBorrowingResponse">
+    <part name="parameters" element="tns:getNotReturnedBorrowingResponse"/>
+  </message>
+  <message name="returnBorrowing">
+    <part name="parameters" element="tns:returnBorrowing"/>
+  </message>
+  <message name="returnBorrowingResponse">
+    <part name="parameters" element="tns:returnBorrowingResponse"/>
   </message>
   <message name="launchSendEmail">
     <part name="parameters" element="tns:launchSendEmail"/>
@@ -66,50 +72,48 @@
   <message name="extendBorrowingResponse">
     <part name="parameters" element="tns:extendBorrowingResponse"/>
   </message>
-  <message name="borrowBook">
-    <part name="parameters" element="tns:borrowBook"/>
+  <message name="findByMember">
+    <part name="parameters" element="tns:findByMember"/>
   </message>
-  <message name="borrowBookResponse">
-    <part name="parameters" element="tns:borrowBookResponse"/>
-  </message>
-  <message name="returnBorrowing">
-    <part name="parameters" element="tns:returnBorrowing"/>
-  </message>
-  <message name="returnBorrowingResponse">
-    <part name="parameters" element="tns:returnBorrowingResponse"/>
+  <message name="findByMemberResponse">
+    <part name="parameters" element="tns:findByMemberResponse"/>
   </message>
   <portType name="borrowingWs">
     <operation name="init">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/initRequest" message="tns:init"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/initResponse" message="tns:initResponse"/>
     </operation>
-    <operation name="borrowBookWithSession">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookWithSessionRequest" message="tns:borrowBookWithSession"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookWithSessionResponse" message="tns:borrowBookWithSessionResponse"/>
+    <operation name="borrowBook">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookRequest" message="tns:borrowBook"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookResponse" message="tns:borrowBookResponse"/>
     </operation>
     <operation name="findByBorrowingId">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByBorrowingIdRequest" message="tns:findByBorrowingId"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByBorrowingIdResponse" message="tns:findByBorrowingIdResponse"/>
     </operation>
+    <operation name="extendBorrowingWithSession">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingWithSessionRequest" message="tns:extendBorrowingWithSession"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingWithSessionResponse" message="tns:extendBorrowingWithSessionResponse"/>
+    </operation>
     <operation name="returnBorrowingWithSession">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/returnBorrowingWithSessionRequest" message="tns:returnBorrowingWithSession"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/returnBorrowingWithSessionResponse" message="tns:returnBorrowingWithSessionResponse"/>
-    </operation>
-    <operation name="getNotReturnedBorrowing">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/getNotReturnedBorrowingRequest" message="tns:getNotReturnedBorrowing"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/getNotReturnedBorrowingResponse" message="tns:getNotReturnedBorrowingResponse"/>
     </operation>
     <operation name="verifyBoksListAvailableSize">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/verifyBoksListAvailableSizeRequest" message="tns:verifyBoksListAvailableSize"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/verifyBoksListAvailableSizeResponse" message="tns:verifyBoksListAvailableSizeResponse"/>
     </operation>
-    <operation name="extendBorrowingWithSession">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingWithSessionRequest" message="tns:extendBorrowingWithSession"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingWithSessionResponse" message="tns:extendBorrowingWithSessionResponse"/>
+    <operation name="borrowBookWithSession">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookWithSessionRequest" message="tns:borrowBookWithSession"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookWithSessionResponse" message="tns:borrowBookWithSessionResponse"/>
     </operation>
-    <operation name="findByMember">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberRequest" message="tns:findByMember"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberResponse" message="tns:findByMemberResponse"/>
+    <operation name="getNotReturnedBorrowing">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/getNotReturnedBorrowingRequest" message="tns:getNotReturnedBorrowing"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/getNotReturnedBorrowingResponse" message="tns:getNotReturnedBorrowingResponse"/>
+    </operation>
+    <operation name="returnBorrowing">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/returnBorrowingRequest" message="tns:returnBorrowing"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/returnBorrowingResponse" message="tns:returnBorrowingResponse"/>
     </operation>
     <operation name="launchSendEmail">
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/launchSendEmailRequest" message="tns:launchSendEmail"/>
@@ -119,13 +123,9 @@
       <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingRequest" message="tns:extendBorrowing"/>
       <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/extendBorrowingResponse" message="tns:extendBorrowingResponse"/>
     </operation>
-    <operation name="borrowBook">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookRequest" message="tns:borrowBook"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/borrowBookResponse" message="tns:borrowBookResponse"/>
-    </operation>
-    <operation name="returnBorrowing">
-      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/returnBorrowingRequest" message="tns:returnBorrowing"/>
-      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/returnBorrowingResponse" message="tns:returnBorrowingResponse"/>
+    <operation name="findByMember">
+      <input wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberRequest" message="tns:findByMember"/>
+      <output wsam:Action="http://webservice.lib.racic.com/borrowingWs/findByMemberResponse" message="tns:findByMemberResponse"/>
     </operation>
   </portType>
   <binding name="borrowingWsPortBinding" type="tns:borrowingWs">
@@ -139,7 +139,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="borrowBookWithSession">
+    <operation name="borrowBook">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -157,7 +157,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="returnBorrowingWithSession">
+    <operation name="extendBorrowingWithSession">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -166,7 +166,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="getNotReturnedBorrowing">
+    <operation name="returnBorrowingWithSession">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -184,7 +184,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="extendBorrowingWithSession">
+    <operation name="borrowBookWithSession">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -193,7 +193,16 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="findByMember">
+    <operation name="getNotReturnedBorrowing">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="returnBorrowing">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -220,16 +229,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="borrowBook">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="returnBorrowing">
+    <operation name="findByMember">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

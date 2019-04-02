@@ -12,6 +12,12 @@
   <message name="initResponse">
     <part name="parameters" element="tns:initResponse"/>
   </message>
+  <message name="updateBook">
+    <part name="parameters" element="tns:updateBook"/>
+  </message>
+  <message name="updateBookResponse">
+    <part name="parameters" element="tns:updateBookResponse"/>
+  </message>
   <message name="findAvailableBooksFromWork">
     <part name="parameters" element="tns:findAvailableBooksFromWork"/>
   </message>
@@ -24,16 +30,14 @@
   <message name="findBookbyIdResponse">
     <part name="parameters" element="tns:findBookbyIdResponse"/>
   </message>
-  <message name="updateBook">
-    <part name="parameters" element="tns:updateBook"/>
-  </message>
-  <message name="updateBookResponse">
-    <part name="parameters" element="tns:updateBookResponse"/>
-  </message>
   <portType name="bookWs">
     <operation name="init">
       <input wsam:Action="http://webservice.lib.racic.com/bookWs/initRequest" message="tns:init"/>
       <output wsam:Action="http://webservice.lib.racic.com/bookWs/initResponse" message="tns:initResponse"/>
+    </operation>
+    <operation name="updateBook">
+      <input wsam:Action="http://webservice.lib.racic.com/bookWs/updateBookRequest" message="tns:updateBook"/>
+      <output wsam:Action="http://webservice.lib.racic.com/bookWs/updateBookResponse" message="tns:updateBookResponse"/>
     </operation>
     <operation name="findAvailableBooksFromWork">
       <input wsam:Action="http://webservice.lib.racic.com/bookWs/findAvailableBooksFromWorkRequest" message="tns:findAvailableBooksFromWork"/>
@@ -42,10 +46,6 @@
     <operation name="findBookbyId">
       <input wsam:Action="http://webservice.lib.racic.com/bookWs/findBookbyIdRequest" message="tns:findBookbyId"/>
       <output wsam:Action="http://webservice.lib.racic.com/bookWs/findBookbyIdResponse" message="tns:findBookbyIdResponse"/>
-    </operation>
-    <operation name="updateBook">
-      <input wsam:Action="http://webservice.lib.racic.com/bookWs/updateBookRequest" message="tns:updateBook"/>
-      <output wsam:Action="http://webservice.lib.racic.com/bookWs/updateBookResponse" message="tns:updateBookResponse"/>
     </operation>
   </portType>
   <binding name="bookWsPortBinding" type="tns:bookWs">
@@ -59,6 +59,15 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="updateBook">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
     <operation name="findAvailableBooksFromWork">
       <soap:operation soapAction=""/>
       <input>
@@ -69,15 +78,6 @@
       </output>
     </operation>
     <operation name="findBookbyId">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="updateBook">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

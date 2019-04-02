@@ -12,6 +12,24 @@
   <message name="initResponse">
     <part name="parameters" element="tns:initResponse"/>
   </message>
+  <message name="findWorksByAuthorContain">
+    <part name="parameters" element="tns:findWorksByAuthorContain"/>
+  </message>
+  <message name="findWorksByAuthorContainResponse">
+    <part name="parameters" element="tns:findWorksByAuthorContainResponse"/>
+  </message>
+  <message name="isValidWorkByTitle">
+    <part name="parameters" element="tns:isValidWorkByTitle"/>
+  </message>
+  <message name="isValidWorkByTitleResponse">
+    <part name="parameters" element="tns:isValidWorkByTitleResponse"/>
+  </message>
+  <message name="isValidWorkByAuthor">
+    <part name="parameters" element="tns:isValidWorkByAuthor"/>
+  </message>
+  <message name="isValidWorkByAuthorResponse">
+    <part name="parameters" element="tns:isValidWorkByAuthorResponse"/>
+  </message>
   <message name="findWorksByTitleAndAuthor">
     <part name="parameters" element="tns:findWorksByTitleAndAuthor"/>
   </message>
@@ -24,23 +42,11 @@
   <message name="findWorksByTitleContainResponse">
     <part name="parameters" element="tns:findWorksByTitleContainResponse"/>
   </message>
-  <message name="isValidWorkByAuthor">
-    <part name="parameters" element="tns:isValidWorkByAuthor"/>
+  <message name="isValidWork">
+    <part name="parameters" element="tns:isValidWork"/>
   </message>
-  <message name="isValidWorkByAuthorResponse">
-    <part name="parameters" element="tns:isValidWorkByAuthorResponse"/>
-  </message>
-  <message name="isValidWorkByTitle">
-    <part name="parameters" element="tns:isValidWorkByTitle"/>
-  </message>
-  <message name="isValidWorkByTitleResponse">
-    <part name="parameters" element="tns:isValidWorkByTitleResponse"/>
-  </message>
-  <message name="findWorksByAuthorContain">
-    <part name="parameters" element="tns:findWorksByAuthorContain"/>
-  </message>
-  <message name="findWorksByAuthorContainResponse">
-    <part name="parameters" element="tns:findWorksByAuthorContainResponse"/>
+  <message name="isValidWorkResponse">
+    <part name="parameters" element="tns:isValidWorkResponse"/>
   </message>
   <message name="getAll">
     <part name="parameters" element="tns:getAll"/>
@@ -54,16 +60,22 @@
   <message name="findWorksByIdResponse">
     <part name="parameters" element="tns:findWorksByIdResponse"/>
   </message>
-  <message name="isValidWork">
-    <part name="parameters" element="tns:isValidWork"/>
-  </message>
-  <message name="isValidWorkResponse">
-    <part name="parameters" element="tns:isValidWorkResponse"/>
-  </message>
   <portType name="workWs">
     <operation name="init">
       <input wsam:Action="http://webservice.lib.racic.com/workWs/initRequest" message="tns:init"/>
       <output wsam:Action="http://webservice.lib.racic.com/workWs/initResponse" message="tns:initResponse"/>
+    </operation>
+    <operation name="findWorksByAuthorContain">
+      <input wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByAuthorContainRequest" message="tns:findWorksByAuthorContain"/>
+      <output wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByAuthorContainResponse" message="tns:findWorksByAuthorContainResponse"/>
+    </operation>
+    <operation name="isValidWorkByTitle">
+      <input wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByTitleRequest" message="tns:isValidWorkByTitle"/>
+      <output wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByTitleResponse" message="tns:isValidWorkByTitleResponse"/>
+    </operation>
+    <operation name="isValidWorkByAuthor">
+      <input wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByAuthorRequest" message="tns:isValidWorkByAuthor"/>
+      <output wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByAuthorResponse" message="tns:isValidWorkByAuthorResponse"/>
     </operation>
     <operation name="findWorksByTitleAndAuthor">
       <input wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByTitleAndAuthorRequest" message="tns:findWorksByTitleAndAuthor"/>
@@ -73,17 +85,9 @@
       <input wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByTitleContainRequest" message="tns:findWorksByTitleContain"/>
       <output wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByTitleContainResponse" message="tns:findWorksByTitleContainResponse"/>
     </operation>
-    <operation name="isValidWorkByAuthor">
-      <input wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByAuthorRequest" message="tns:isValidWorkByAuthor"/>
-      <output wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByAuthorResponse" message="tns:isValidWorkByAuthorResponse"/>
-    </operation>
-    <operation name="isValidWorkByTitle">
-      <input wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByTitleRequest" message="tns:isValidWorkByTitle"/>
-      <output wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkByTitleResponse" message="tns:isValidWorkByTitleResponse"/>
-    </operation>
-    <operation name="findWorksByAuthorContain">
-      <input wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByAuthorContainRequest" message="tns:findWorksByAuthorContain"/>
-      <output wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByAuthorContainResponse" message="tns:findWorksByAuthorContainResponse"/>
+    <operation name="isValidWork">
+      <input wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkRequest" message="tns:isValidWork"/>
+      <output wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkResponse" message="tns:isValidWorkResponse"/>
     </operation>
     <operation name="getAll">
       <input wsam:Action="http://webservice.lib.racic.com/workWs/getAllRequest" message="tns:getAll"/>
@@ -92,10 +96,6 @@
     <operation name="findWorksById">
       <input wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByIdRequest" message="tns:findWorksById"/>
       <output wsam:Action="http://webservice.lib.racic.com/workWs/findWorksByIdResponse" message="tns:findWorksByIdResponse"/>
-    </operation>
-    <operation name="isValidWork">
-      <input wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkRequest" message="tns:isValidWork"/>
-      <output wsam:Action="http://webservice.lib.racic.com/workWs/isValidWorkResponse" message="tns:isValidWorkResponse"/>
     </operation>
   </portType>
   <binding name="workWsPortBinding" type="tns:workWs">
@@ -109,6 +109,33 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="findWorksByAuthorContain">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="isValidWorkByTitle">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="isValidWorkByAuthor">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
     <operation name="findWorksByTitleAndAuthor">
       <soap:operation soapAction=""/>
       <input>
@@ -127,25 +154,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="isValidWorkByAuthor">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="isValidWorkByTitle">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="findWorksByAuthorContain">
+    <operation name="isValidWork">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -164,15 +173,6 @@
       </output>
     </operation>
     <operation name="findWorksById">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="isValidWork">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>

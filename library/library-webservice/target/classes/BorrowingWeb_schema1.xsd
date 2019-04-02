@@ -84,19 +84,6 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="extendBorrowing">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:int" minOccurs="0"/>
-      <xs:element name="arg1" type="tns:member" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="extendBorrowingResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="returnBorrowing">
     <xs:sequence>
       <xs:element name="arg0" type="xs:int" minOccurs="0"/>
@@ -105,6 +92,19 @@
   </xs:complexType>
 
   <xs:complexType name="returnBorrowingResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="extendBorrowing">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" minOccurs="0"/>
+      <xs:element name="arg1" type="tns:member" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="extendBorrowingResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
     </xs:sequence>
