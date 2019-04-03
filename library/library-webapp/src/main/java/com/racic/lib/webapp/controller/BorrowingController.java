@@ -77,14 +77,17 @@ public class BorrowingController {
     @RequestMapping(value = "/borrowinglist/extend/{borrowingid}", method = RequestMethod.GET)
     public ModelAndView extendBorrow (HttpServletRequest request,@PathVariable int borrowingid) {
         ModelAndView mv = null;
+
         BorrowingWeb borrowingWeb = new BorrowingWeb();
         BorrowingWs borrowingWs = borrowingWeb.getBorrowingWsPort();
         String message="";
         String msgError="";
+
         if(request!=null && request.getSession().getAttribute("connected")!=null) {
             com.racic.lib.client.Member member = (com.racic.lib.client.Member) request.getSession().getAttribute("memberConnected");
             mv = new ModelAndView("borrowing/borrowinginfo");
            boolean extendOK = borrowingWs.extendBorrowing(borrowingid, member);
+           System.out.println("We are in extend - borrowing controller = " +extendOK);
             if (extendOK ==true ) {
                 List<com.racic.lib.client.Borrowing> borrowingList = borrowingWs.findByMember(member);
                 mv.addObject("borrowingList", borrowingList);

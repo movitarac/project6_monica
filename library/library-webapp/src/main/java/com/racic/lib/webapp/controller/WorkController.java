@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -57,22 +58,23 @@ public class WorkController {
         return modelAndView;
     }
     @RequestMapping(value = "/searchbytitle", method = RequestMethod.GET)
-    public ModelAndView workssearchbytitle(@RequestParam("title") String title) {
-        ModelAndView mv = null;
+    public ModelAndView workssearchbytitle(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
         boolean valid;
 
+        String title = request.getParameter("title");
 
         WorkWeb workWebService = new WorkWeb();
         WorkWs wsWork = workWebService.getWorkWsPort();
 
        List<com.racic.lib.client.Work> worksListFoundByTitle = wsWork.findWorksByTitleContain(title);
-       valid= true;
         valid = wsWork.isValidWorkByTitle(title);
 
         if (valid == true) {
             if (title != null) {
                 mv.setViewName("work/worksfound");
                 mv.addObject("worksListFound", worksListFoundByTitle);
+
             } else {
                 mv.setViewName("library/error");
                 mv.addObject("msg", "Error occured while processing");
@@ -85,4 +87,36 @@ public class WorkController {
         return mv;
     }
 
+
+    @RequestMapping(value = "/searchwork", method = RequestMethod.GET)
+    public ModelAndView searchwork(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+
+
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+
+
+        WorkWeb workWebService = new WorkWeb();
+        WorkWs wsWork = workWebService.getWorkWsPort();
+        boolean isWorkValid;
+        List<com.racic.lib.client.Work> worksListFound = wsWork.findWorksByTitleAndAuthor(author,title);
+        isWorkValid = wsWork.isValidWork(author,title);
+
+
+        if (isWorkValid == true) {
+            if (title != null || author !=null) {
+                mv.setViewName("work/worksfound");
+                mv.addObject("worksListFound", worksListFound);
+            } else {
+                mv.setViewName("work/worksearch");
+                mv.addObject("msg", "No work with the chosen title can be found!");
+            }
+        } else {
+            mv.setViewName("library/error");
+            mv.addObject("msg", "Error occured while processing");
+        }
+
+        return mv;
+    }
 }

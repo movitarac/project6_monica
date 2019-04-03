@@ -13,8 +13,8 @@
   <packaging>war</packaging>
 
   <name>library-webservice Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <!--  change it to the project's website -->
+  <url>hhttp://localhost:8080/library-webservice/ws/workWs?</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -256,6 +256,17 @@
             <configuration>
              <executable>${tool.wsgen}</executable>
               <sei>com.racic.lib.webservice.MemberWs</sei>
+              <genWsdl>true</genWsdl>
+            </configuration>
+          </execution>
+          <execution>
+            <id>wsgen-for-sessionws</id>
+            <goals>
+              <goal>wsgen</goal>
+            </goals>
+            <configuration>
+              <executable>${tool.wsgen}</executable>
+              <sei>com.racic.lib.webservice.SessionWs</sei>
               <genWsdl>true</genWsdl>
             </configuration>
           </execution>

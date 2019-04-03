@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://webservice.lib.racic.com/" xmlns:tns="http://webservice.lib.racic.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="checkSession" type="tns:checkSession"/>
+
+  <xs:element name="checkSessionResponse" type="tns:checkSessionResponse"/>
+
+  <xs:element name="checkSessionWithSession" type="tns:checkSessionWithSession"/>
+
+  <xs:element name="checkSessionWithSessionResponse" type="tns:checkSessionWithSessionResponse"/>
+
+  <xs:element name="getAllSession" type="tns:getAllSession"/>
+
+  <xs:element name="getAllSessionResponse" type="tns:getAllSessionResponse"/>
+
+  <xs:element name="init" type="tns:init"/>
+
+  <xs:element name="initResponse" type="tns:initResponse"/>
+
+  <xs:complexType name="init">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="initResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllSession">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllSessionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:session" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="session">
+    <xs:sequence>
+      <xs:element name="idSession" type="xs:int" minOccurs="0"/>
+      <xs:element name="member" type="tns:member" minOccurs="0"/>
+      <xs:element name="sessionStart" type="tns:timestamp" minOccurs="0"/>
+      <xs:element name="sessionTimeOut" type="tns:timestamp" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="member">
+    <xs:complexContent>
+      <xs:extension base="tns:user">
+        <xs:sequence>
+          <xs:element name="address" type="xs:string" minOccurs="0"/>
+          <xs:element name="email" type="xs:string" minOccurs="0"/>
+          <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+          <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element name="iduser" type="xs:int" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="username" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="timestamp">
+    <xs:sequence>
+      <xs:element name="nanos" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="checkSessionWithSession">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="checkSessionWithSessionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="checkSession">
+    <xs:sequence>
+      <xs:element name="arg0" type="tns:member" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="checkSessionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,54 @@
+version: '3.1'
+services:
+   db:
+     image: mysql:8.0
+     volumes:
+          - ./docker/db:/docker-entrypoint-initdb.d
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: citylibrary
+       MYSQL_USER: testuser
+       MYSQL_PASSWORD: racine.root1234
+    ports:
+      - 3306:3306
+      
+   
+     web-service:
+        image: tomcat:9
+        container_name: tomcat
+        hostname: localhost
+        volumes:
+          - ./docker/myapp.war:/usr/local/tomcat/webapps/library-webservice.war
+        ports:
+          - "8080:8080"
+    web-application:
+        image: tomcat:9
+        container_name: tomcat
+        hostname: localhost
+        volumes:
+          - ./docker/myapp.war:/usr/local/tomcat/webapps/library-webapp.war
+        ports:
+          - "8080:8080"
+          
+
+      
+  batch:
+    image: movitarac/library-batch
+    container_name: library_batch
+    volumes:
+      - ./batch/logs:/logs
+    
+   
+          
+  web-application:
+    image: shinyay/docker-glassfish5
+    container_name: library_web-application
+    hostname: localhost
+    volumes:
+      - ./share/images:/images
+      - ./web-application/app/Library.war:/glassfish5/glassfish/domains/domain1/autodeploy/Library.war
+      - ./web-application/logs:/glassfish5/glassfish/domains/domain1/logs
+    ports:
+      - 80:80
+      - 8080:8080

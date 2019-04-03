@@ -34,32 +34,33 @@
     </dependency>
   </dependencies>
 
-    <!--<build>
+  <!-- <build>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <version>2.5</version>
                 <executions>-->
-            <!--Generate webservice client-->
-           <!-- <execution>
-					<id>wsimport-for-all</id>
-					<goals>
-						<goal>wsimport</goal>
-					</goals>
-					<configuration>
-						<sourceDestDir>${project.basedir}/src/main/java/wsclient/</sourceDestDir>
-						<wsdlUrls>
-							<wsdlUrl>http://localhost:8080/library-webservice/ws/workWs?wsdl</wsdlUrl>
-							<wsdlUrl>http://localhost:8080/library-webservice/ws/borrowingWs?wsdl</wsdlUrl>
-							<wsdlUrl>http://localhost:8080/library-webservice/ws/bookWs?wsdl</wsdlUrl>
-							<wsdlUrl>http://localhost:8080/library-webservice/ws/memberWs?wsdl</wsdlUrl>
-						</wsdlUrls>
-						</configuration>
-				</execution>
-        </executions>
-      </plugin>
-    </plugins>
+            <!-- Generate webservice client-->
+    <!-- <execution>
+             <id>wsimport-for-all</id>
+             <goals>
+                 <goal>wsimport</goal>
+             </goals>
+             <configuration>
+                 <sourceDestDir>${project.basedir}/src/main/java/wsclient/</sourceDestDir>
+                 <wsdlUrls>
+                     <wsdlUrl>http://localhost:8080/library-webservice/ws/workWs?wsdl</wsdlUrl>
+                     <wsdlUrl>http://localhost:8080/library-webservice/ws/borrowingWs?wsdl</wsdlUrl>
+                     <wsdlUrl>http://localhost:8080/library-webservice/ws/bookWs?wsdl</wsdlUrl>
+                     <wsdlUrl>http://localhost:8080/library-webservice/ws/memberWs?wsdl</wsdlUrl>
+                     <wsdlUrl>http://localhost:8080/library-webservice/ws/sessionWs?wsdl</wsdlUrl>
+                 </wsdlUrls>
+                 </configuration>
+         </execution>
+ </executions>
+</plugin>
+</plugins>
 
-  </build>-->
+</build>-->
 </project>

@@ -37,7 +37,7 @@ public class MemberWs{
     }
 
     @WebMethod
-    public boolean isValidUser(String userName, String passWord) {
+    public Integer isValidUser(String userName, String passWord) {
         return memberService.isValidUser(userName, passWord);
     }
 

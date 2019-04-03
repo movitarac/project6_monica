@@ -1,6 +1,8 @@
 package com.racic.lib.webservice;
 
+import com.racic.lib.business.service.contract.SessionService;
 import com.racic.lib.business.service.contract.WorkService;
+import com.racic.lib.model.Session;
 import com.racic.lib.model.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,9 @@ public class WorkWs {
 
     @Autowired
     WorkService workService;
+
+
+
 
     @WebMethod
     public Work findWorksById(Integer worksid) {
@@ -44,6 +49,16 @@ public class WorkWs {
     @WebMethod
     public boolean isValidWorkByTitle(String title) {
         return workService.isValidWorkByTitle(title);
+    }
+
+    @WebMethod
+    public boolean isValidWork(String author, String title) {
+        return workService.isValidWork(author,title);
+    }
+
+    @WebMethod
+    public List<Work> findWorksByTitleAndAuthor(String author, String title) {
+        return workService.findWork(author,title);
     }
 
     @WebMethod

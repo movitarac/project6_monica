@@ -12,4 +12,7 @@
 			  url-pattern="/ws/memberWs" />
 	<endpoint name="borrowingWeb" implementation="com.racic.lib.webservice.BorrowingWs"
 			  url-pattern="/ws/borrowingWs" />
+
+	<endpoint name="sessionWeb" implementation="com.racic.lib.webservice.SessionWs"
+			  url-pattern="/ws/sessionWs" />
 </endpoints>

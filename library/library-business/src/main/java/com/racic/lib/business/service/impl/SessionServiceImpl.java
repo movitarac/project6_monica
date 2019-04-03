@@ -43,51 +43,9 @@ public class SessionServiceImpl implements SessionService {
     }
 
 
-    //methode security
-    //private -- not exposed as webmethod
     @Override
-    public boolean findAndCheckSession(Member member) {
-        boolean toreturn;
-        Session foundSession;
-        Timestamp timeNow = new Timestamp(System.currentTimeMillis());
-        Timestamp timeOut;
-        Timestamp newTimeOut;
-        List<Session> sessionsFoundForAMember = sessionRepository.findSessionsByMember(member);
-        int addtime = 60;
-
-
-        if (!sessionsFoundForAMember.isEmpty()) {
-       //TODO
-            for (Session s : sessionsFoundForAMember) {
-                timeOut = s.getSessionTimeOut() ;
-                if (timeOut.after(timeNow)) {
-                    Instant durationSession = timeOut.toInstant().plusSeconds(addtime);
-                    newTimeOut = Timestamp.from(durationSession);
-                    s.setSessionTimeOut(newTimeOut);
-                    sessionRepository.save(s);
-                } else {
-                    try {
-                        throw new SessionException("problem with session.. no session is valid");
-                    } catch (SessionException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            toreturn = true;
-        } else {
-            this.createSession(member);
-            toreturn = false;
-        }
-        return toreturn;
-
-
-    }
-
-
-    @Override
-    public boolean createSession(Member member) {
-        boolean creationOk;
+    public Integer createSession(Member member) {
+        Integer sessionId = 0;
         Session session = new Session();
         int limitSession = 60; //in second- so the time limit for one session is 1minute
 
@@ -102,29 +60,91 @@ public class SessionServiceImpl implements SessionService {
         session.setSessionTimeOut(sessionEnd);
         sessionRepository.save(session);
 
-        creationOk = true;
-        return creationOk;
+        return sessionId;
     }
 
     @Override
-    public List<Session> findSessionsByMember(Member member) {
-        return sessionRepository.findSessionsByMember(member);
+    public boolean checkSession(Member member) {
+        boolean toreturn;
+
+        Session foundSession;
+        Timestamp timeNow = new Timestamp(System.currentTimeMillis());
+        Timestamp timeOut;
+        Timestamp newTimeOut;
+        List<Session> sessionsFound = sessionRepository.findSessionsByMember(member);
+
+        Session lastSessionFromThisMember = sessionsFound.get(sessionsFound.size() - 1);
+        int addtime = 60;
+
+
+            if (lastSessionFromThisMember.getSessionTimeOut().after(timeNow) && lastSessionFromThisMember != null) {
+                timeOut = lastSessionFromThisMember.getSessionTimeOut();
+                Instant durationSession = timeOut.toInstant().plusSeconds(addtime);
+                newTimeOut = Timestamp.from(durationSession);
+                lastSessionFromThisMember.setSessionTimeOut(newTimeOut);
+                sessionRepository.save(lastSessionFromThisMember);
+                toreturn = true;
+                System.out.println("list session not null and session is renewed");
+            } else {
+                try {
+                    throw new SessionException("problem with session.. this session is already expired");
+                } catch (SessionException e) {
+                    e.printStackTrace();
+                }
+                toreturn = false;
+                System.out.println("list session not null or session is expired");
+            }
+
+
+
+
+        return toreturn;
+
+    }
+
+    public boolean checkSession(Integer sessionId) {
+        Session foundSession;
+        boolean toreturn;
+
+        int addtime = 60;
+
+        Session sessionsFound = sessionRepository.findById(sessionId).get();
+        Timestamp timeNow = new Timestamp(System.currentTimeMillis());
+        Timestamp timeOut;
+        Timestamp newTimeOut;
+
+
+        timeOut = sessionsFound.getSessionTimeOut();
+
+            if (timeOut.after(timeNow) && sessionsFound != null) {
+
+                Instant durationSession = timeOut.toInstant().plusSeconds(addtime);
+
+                newTimeOut = Timestamp.from(durationSession);
+
+                sessionsFound.setSessionTimeOut(newTimeOut);
+
+                sessionRepository.save(sessionsFound);
+                System.out.println("session time out is renewed: " + sessionsFound.getSessionTimeOut());
+                toreturn = true;
+            } else {
+                try {
+                    throw new SessionException("problem with session.. this session is already expired");
+                } catch (SessionException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("session time out is already passed: " + sessionsFound.getSessionTimeOut());
+
+                toreturn = false;
+            }
+
+
+
+        return toreturn;
+
     }
 
 
-   // public Session
-
-
-    @Override
-    public Session findFirstByOrderByIdSession(){
-
-       List<Session> sessionList = sessionRepository.findAll();
-        Session session = null;
-
-        session = sessionList.get(sessionList.size()-1);
-
-       return session;
-    }
 
 
 }
