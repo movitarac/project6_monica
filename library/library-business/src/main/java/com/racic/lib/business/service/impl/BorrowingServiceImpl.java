@@ -28,7 +28,7 @@ import javax.mail.internet.MimeMessage;
 @Service("borrowingService")
 public class BorrowingServiceImpl implements BorrowingService {
 
-    //public static final SimpleDateFormat FRENCH_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+
     @Autowired
     BorrowingRepository borrowingRepository;
     @Autowired
