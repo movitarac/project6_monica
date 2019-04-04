@@ -45,7 +45,7 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public Integer createSession(Member member) {
-        Integer sessionId = 0;
+
         Session session = new Session();
         int limitSession = 60; //in second- so the time limit for one session is 1minute
 
@@ -58,9 +58,9 @@ public class SessionServiceImpl implements SessionService {
         session.setMember(member);
         session.setSessionStart(sessionStart);
         session.setSessionTimeOut(sessionEnd);
-        sessionRepository.save(session);
+        Session ss = sessionRepository.save(session);
 
-        return sessionId;
+        return ss.getIdSession();
     }
 
     @Override
@@ -137,8 +137,6 @@ public class SessionServiceImpl implements SessionService {
 
                 toreturn = false;
             }
-
-
 
         return toreturn;
 
