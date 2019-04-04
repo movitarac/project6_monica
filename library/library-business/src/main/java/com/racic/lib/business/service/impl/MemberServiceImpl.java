@@ -62,12 +62,13 @@ public class MemberServiceImpl implements MemberService {
 
 
 
-	//private ne met pas dans le contract no override
 
 	@Override
 	public void updateMemberInfo(Member member) {
-
-    	memberRepository.save(member);
+		boolean sessionValid = sessionService.checkSession(member);
+		if (sessionValid = true) {
+			memberRepository.save(member);
+		}
 	}
 
 
