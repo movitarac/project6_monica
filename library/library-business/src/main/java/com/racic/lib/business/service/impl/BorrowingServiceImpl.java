@@ -46,7 +46,7 @@ public class BorrowingServiceImpl implements BorrowingService {
         boolean toReturn;
 
         Work workWithToBeBorrowed = workRepository.findById(worksId).get();
-        //make a book list from the same work (only available books)
+        //make a book list from the given id work (only available books)
         List<Book> booksAvailable = bookService.findAvailableBooksFromWork(worksId);
 
         Borrowing borrowToBeAdded = new Borrowing();
