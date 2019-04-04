@@ -1,6 +1,6 @@
-# Project 3
+# Project 6
 
-Project 3 has a goal to create a library management system that can be accessible by all member or users of the e-library. This system includes :
+Project 6 has a goal to create a library management system that can be accessible by all member or users of the e-library. This system includes :
 o    A web site designed with responsive web design (RWD). The user can perform different things such as :
 
     Find different works and their available copies ,borrow different books,search books by author’s name, check their borrowing status and period, extend their borrowing period and return borrowed books
@@ -29,7 +29,10 @@ Technologies used in general to develop this application are :
 
 •   Spring MVC 
 
-• 	Quartz Scheduler
+• 	SoapUI
+
+• 	Git - Github
+
 
 
 ## Maven project into multiple modules
@@ -96,7 +99,7 @@ This url is one of an attribute called ‘imageUrl’ in ‘Work’ table.
 ```
 ```
 - Use the following user informations to login:
-username georgelulu / password 1234lulu
+username willcam / password 1234willow
 
 ```
 
@@ -104,11 +107,11 @@ username georgelulu / password 1234lulu
 
 - Download sources from github (zip is better): 
 ```
-https://github.com/movitarac/project3_monica
+https://github.com/movitarac/project6_monica
 ```
-- Unzip your download project3_monica-master
+- Unzip your download project6_monica-master
 
-- Import the project project3_monica-master/library in your chosen IDE (Intellij or Eclipse) as a Maven Project
+- Import the project project6_monica-master/library in your chosen IDE (Intellij or Eclipse) as a Maven Project
 
 -   Build the parent project (maven install)
 ```
@@ -188,3 +191,13 @@ It means the application web does not directly call the library-business.
 
 
 WSDL files can be accessed after deploying the library-webapp.war in Tomcat http://localhost:8080/library-webservice/ws/workWs
+
+### SoapUI
+
+For the new enhancement of this management systtem, the test can be executed by using SoapUI.
+
+5 SoapUI projects and a properties file can be found in folder 'SOAP-UI'. The properties file can be implemented in each TestCase
+
+```
+Open SoapUI - Click File - Import Project - Choose the project - In 'TestSuite' part, load the properties file in 'Custom Properties' - Launch TestSuite 
+```
