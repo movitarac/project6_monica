@@ -28,7 +28,7 @@ import javax.mail.internet.MimeMessage;
 @Service("borrowingService")
 public class BorrowingServiceImpl implements BorrowingService {
 
-    //public static final SimpleDateFormat FRENCH_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+
     @Autowired
     BorrowingRepository borrowingRepository;
     @Autowired
@@ -46,7 +46,7 @@ public class BorrowingServiceImpl implements BorrowingService {
         boolean toReturn;
 
         Work workWithToBeBorrowed = workRepository.findById(worksId).get();
-        //make a book list from the same work (only available books)
+        //make a book list from the given id work (only available books)
         List<Book> booksAvailable = bookService.findAvailableBooksFromWork(worksId);
 
         Borrowing borrowToBeAdded = new Borrowing();
@@ -147,7 +147,11 @@ public class BorrowingServiceImpl implements BorrowingService {
         boolean checkSession = sessionService.checkSession(sessionId);
         Borrowing borrowToBeAdded = new Borrowing();
         //set Issue Date
+        //calculate the return date
         Date issueDate = new Date();
+        Date returnDate = issueDate;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(returnDate);
         /**
          * if a session  is still valid (not false)
          * set new session time out
@@ -162,37 +166,33 @@ public class BorrowingServiceImpl implements BorrowingService {
              */
             if (booksAvailable.size() > 0) {
                 borrowToBeAdded.setMember(member);
-                borrowToBeAdded.setIssueDate(issueDate);
-                //calculate the return date
-                Date returnDate = issueDate;
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(returnDate);
+                borrowToBeAdded.setExtended(false);
+
                 calendar.add(Calendar.WEEK_OF_MONTH, 4);
                 returnDate = calendar.getTime();
-                borrowToBeAdded.setReturnDate(returnDate);
+                borrowToBeAdded.setIssueDate(issueDate);
+
                 borrowToBeAdded.setStatus(Utils.BorrowStatusEnum.ONGOING.getValue());
-                borrowToBeAdded.setExtended(false);
+                borrowToBeAdded.setReturnDate(returnDate);
 
                 //the latest book on the available list will be borrowed
                 Book bookToBeAdded = booksAvailable.get(booksAvailable.size() - 1);
-                borrowToBeAdded.setBook(bookToBeAdded);
-
-                //save the borrowing
-                borrowingRepository.save(borrowToBeAdded);
-
                 //change the availability of this book and the borrowing
+                borrowToBeAdded.setBook(bookToBeAdded);
                 bookToBeAdded.setAvailable(false);
                 bookToBeAdded.setBorrowing(borrowToBeAdded);
-
-                System.out.println(bookToBeAdded.getBookId() + " is "
-                        + bookToBeAdded.isAvailable());
+                //save the borrowing
+                borrowingRepository.save(borrowToBeAdded);
                 //update and save the modification for book in database
                 bookRepository.save(bookToBeAdded);
 
                 //remove the borrowed book from the list of available books
                 booksAvailable.remove(bookToBeAdded);
 
-                //update the total of available copy for the related work
+                System.out.println(bookToBeAdded.getBookId() + " is "
+                        + bookToBeAdded.isAvailable());
+
+                 //update the total of available copy for the related work
                 workWithToBeBorrowed.setCopiesAvailable(booksAvailable.size());
 
                 //save the modification
@@ -207,7 +207,6 @@ public class BorrowingServiceImpl implements BorrowingService {
                     e.printStackTrace();
                     System.out.println("problem occured");
                 }
-
             }
         } else {
             try {
@@ -216,8 +215,6 @@ public class BorrowingServiceImpl implements BorrowingService {
                 e.printStackTrace();
             }
         }
-
-
         toReturn = true;
         return toReturn;
     }
@@ -338,16 +335,14 @@ public class BorrowingServiceImpl implements BorrowingService {
     public boolean extendBorrowing(Integer borrowingId, Member member) {
         boolean toreturn;
         Borrowing borrowingtoBeExtended = borrowingRepository.findById(borrowingId).get();
+
         Date returnDate = borrowingtoBeExtended.getReturnDate();
+        Date today = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(returnDate);
         calendar.add(Calendar.WEEK_OF_MONTH, 4);
         returnDate = calendar.getTime();
-        Date today = new Date();
-
-
         boolean checkSession = sessionService.checkSession(member);
-
         /**
          * if a session  is still valid (not false)
          * set new session time out
@@ -364,8 +359,9 @@ public class BorrowingServiceImpl implements BorrowingService {
                 System.out.println("new date : " + returnDate + " we are in method extend borrowing");
 
                 borrowingtoBeExtended.setReturnDate(returnDate);
-                borrowingtoBeExtended.setStatus(Utils.BorrowStatusEnum.EXTENDED.getValue());
                 borrowingtoBeExtended.setExtended(true);
+                borrowingtoBeExtended.setStatus(Utils.BorrowStatusEnum.EXTENDED.getValue());
+
                 borrowingRepository.save(borrowingtoBeExtended);
 
                 toreturn = true;
@@ -504,9 +500,10 @@ public class BorrowingServiceImpl implements BorrowingService {
     @Override
     public List<Borrowing> findByMember(Member member) {
 
-        boolean sessionValid = sessionService.checkSession(member);
+
 
         List<Borrowing> borrowingList = new ArrayList<>();
+        boolean sessionValid = sessionService.checkSession(member);
         if (sessionValid = true) {
             borrowingList = borrowingRepository.findByMember(member);
             System.out.println("session is valid = " + sessionValid);
