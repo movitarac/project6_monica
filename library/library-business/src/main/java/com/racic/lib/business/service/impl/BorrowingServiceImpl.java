@@ -488,13 +488,6 @@ public class BorrowingServiceImpl implements BorrowingService {
     }
 
 
-    @Override
-    public List<Borrowing> getNotReturnedBorrowing(Date today) {
-        List<Borrowing> borrowList = borrowingRepository.findAllByReturnDateBefore(today);
-
-        return borrowList;
-    }
-
 
 
     @Override
@@ -518,6 +511,14 @@ public class BorrowingServiceImpl implements BorrowingService {
         }
         return borrowingList;
     }
+
+    @Override
+    public List<Borrowing> getNotReturnedBorrowing(Date today) {
+        List<Borrowing> borrowList = borrowingRepository.findAllByReturnDateBefore(today);
+
+        return borrowList;
+    }
+
 
     @Override
     public Borrowing findByBorrowingId(Integer borrowingid) {
