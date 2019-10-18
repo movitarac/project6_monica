@@ -14,7 +14,6 @@ com\racic\lib\business\service\impl\BookServiceImpl.class
 com\racic\lib\business\service\contract\WorkService.class
 com\racic\lib\business\service\impl\BorrowingServiceImpl.class
 com\racic\lib\business\service\exception\ExtendFunctionnalException.class
-com\racic\lib\business\service\impl\SecurityService.class
 com\racic\lib\business\service\exception\BorrowFunctionalException.class
 com\racic\lib\business\service\Util\Utils$SessionStatusEnum.class
 com\racic\lib\business\service\impl\BorrowingServiceImpl$1.class

@@ -38,13 +38,16 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="findAll">
-    <xs:sequence/>
+  <xs:complexType name="findByUsernameAndPassword">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="findAllResponse">
+  <xs:complexType name="findByUsernameAndPasswordResponse">
     <xs:sequence>
-      <xs:element name="return" type="tns:member" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="return" type="tns:member" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -69,16 +72,13 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="findByUsernameAndPassword">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
-      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
+  <xs:complexType name="findAll">
+    <xs:sequence/>
   </xs:complexType>
 
-  <xs:complexType name="findByUsernameAndPasswordResponse">
+  <xs:complexType name="findAllResponse">
     <xs:sequence>
-      <xs:element name="return" type="tns:member" minOccurs="0"/>
+      <xs:element name="return" type="tns:member" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
